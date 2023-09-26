@@ -38,9 +38,9 @@
 
   
 
-  
+@yield('content') 
  @include('layouts.footer')
-@yield('content')
+
   
 </div>
 <!-- ./wrapper -->
