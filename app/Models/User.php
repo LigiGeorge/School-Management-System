@@ -65,7 +65,7 @@ class User extends Authenticatable
                             $return=$return->whereDate('created_at','=',Request::get('date'));
                           }
         $return=$return->orderBy('id','desc')
-                       ->paginate(1);
+                       ->paginate(20);
         return $return;
     }
     static public function getEmailSingle($email)
