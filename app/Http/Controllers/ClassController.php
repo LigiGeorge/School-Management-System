@@ -10,6 +10,7 @@ class ClassController extends Controller
 {
     public function list()
     {
+        $data['getRecord']=ClassModel::getRecord();
         $data['header_title']="Class List";
         return view('admin.class.list',$data);
     }
@@ -27,5 +28,35 @@ class ClassController extends Controller
         $save->save();
 
         return redirect('admin/class/list')->with('success',"Class successfully created");
+    }
+    public function edit($id)
+    {
+        $data['getRecord']=ClassModel::getSingle($id);
+        if(!empty($data['getRecord']))
+        {
+            $data['header_title']="Edit Class";
+            return view('admin.class.edit',$data);
+        }
+        else
+        {
+            abort(404);
+        }
+    }
+    public function update($id,Request $request)
+    {
+        $save=ClassModel::getSingle($id);
+        $save->name=$request->name;
+        $save->status=$request->status;
+        $save->save();
+
+        return redirect('admin/class/list')->with('success',"Class successfully updated");
+    }
+    public function delete($id)
+    {
+        $save=ClassModel::getSingle($id);
+        $save->is_delete=1;
+        $save->save();
+
+        return redirect()->back()->with('success',"Class successfully deleted");
     }
 }
