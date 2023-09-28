@@ -9,7 +9,9 @@ use Request;
 class ClassModel extends Model
 {
     use HasFactory;
+
     protected $table='class';
+    
     static public function getSingle($id)
     {
         //return self::find($id);->this also can used here-- self is the classmodel
