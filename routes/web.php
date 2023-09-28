@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ClassSubjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,15 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/subject/add',[SubjectController::class,'insert']);
     Route::get('admin/subject/edit/{id}',[SubjectController::class,'edit']);
     Route::post('admin/subject/edit/{id}',[SubjectController::class,'update']);
-    Route::get('admin/subject/delete/{id}',[SubjectController::class,'delete']); 
+    Route::get('admin/subject/delete/{id}',[SubjectController::class,'delete']);
+    
+    //assign_subject url 
+    Route::get('admin/assign_subject/list',[ClassSubjectController::class,'list']); 
+    Route::get('admin/assign_subject/add',[ClassSubjectController::class,'add']);
+    Route::post('admin/assign_subject/add',[ClassSubjectController::class,'insert']);
+    Route::get('admin/assign_subject/edit/{id}',[ClassSubjectController::class,'edit']);
+    Route::post('admin/assign_subject/edit/{id}',[ClassSubjectController::class,'update']);
+    Route::get('admin/assign_subject/delete/{id}',[ClassSubjectController::class,'delete']);
 });
 Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/dashboard',[DashboardController::class,'dashboard']);
