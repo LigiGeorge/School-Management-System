@@ -76,4 +76,14 @@ class User extends Authenticatable
     {
         return User::where('remember_token','=',$remember_token)->first();
     }
+    static public function getStudent()
+    {
+        $return = User::select('users.*')
+                          ->where('users.user_type','=',3)
+                          ->where('users.is_delete','=',0);
+                          
+        $return=$return->orderBy('users.id','desc')
+                       ->paginate(20);
+        return $return;
+    }
 }
