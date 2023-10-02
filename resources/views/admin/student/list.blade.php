@@ -22,7 +22,103 @@
       <div class="container-fluid">
         <div class="row">           
           <div class="col-md-12">                      
-                                
+          <div class="card">  
+            <div class="card-header">
+                <h3 class="card-title">Search Student</h3>
+              </div>          
+              <form method="get" action="">
+              {{csrf_field()}}
+                <div class="card-body">
+                  <div class="row">
+
+                  <div class="form-group col-md-2">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" value="{{Request::get('name')}}" placeholder="Enter name">
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="last_name" value="{{Request::get('last_name')}}" placeholder="Last Name">
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email" value="{{Request::get('email')}}" placeholder="Enter email">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Admission Number</label>
+                    <input type="text" class="form-control" name="admission_number" value="{{Request::get('admission_number')}}" placeholder="Admission Number">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Roll Number</label>
+                    <input type="text" class="form-control" name="roll_number" value="{{Request::get('roll_number')}}" placeholder="Roll Number">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Class</label>
+                    <input type="text" class="form-control" name="class" value="{{Request::get('class')}}" placeholder="Class">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Gender</label>
+                    <select name="gender" class="form-control">
+                        <option value="">Select Gender</option>
+                        <option {{ (Request::get('gender') =='Male') ? 'selected' : ''}} value="Male">Male</option>
+                        <option {{ (Request::get('gender')=='Female') ? 'selected' : ''}} value="Female">Female</option>
+                        <option {{ (Request::get('gender')=='Other') ? 'selected' : ''}} value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Caste</label>
+                    <input type="text" class="form-control" name="caste" value="{{Request::get('caste')}}" placeholder="Caste">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Religion</label>
+                    <input type="text" class="form-control" name="religion" value="{{Request::get('religion')}}" placeholder="Religion">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Mobile Number</label>
+                    <input type="text" class="form-control" name="mobile_number" value="{{Request::get('mobile_number')}}" placeholder="Mobile Number">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Blood Group</label>
+                    <input type="text" class="form-control" name="blood_group" value="{{Request::get('blood_group')}}" placeholder="Blood Group">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Status</label>
+                    <select name="status" class="form-control">
+                        <option value="">Select Status</option>
+                        <option {{ (Request::get('status') ==100) ? 'selected' : ''}} value="100">Active</option>
+                        <option {{ (Request::get('status')==1) ? 'selected' : ''}} value="1">Inactive</option>                        
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Admission Date</label>
+                    <input type="date" class="form-control" name="date" value="{{Request::get('admission_date')}}">                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Created Date</label>
+                    <input type="date" class="form-control" name="date" value="{{Request::get('date')}}">                    
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <button class="btn btn-primary" type="submit" style="margin-top:30px;">Search</button>
+                    <a href="{{url('admin/student/list')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                  </div>
+
+                  </div>                                  
+                </div>
+              </form>
+            </div>                 
           @include('_message')
             <div class="card">
             <div class="card">
