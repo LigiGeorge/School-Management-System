@@ -10,6 +10,7 @@ use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\TeacherController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +41,15 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/admin/add',[AdminController::class,'insert']);
     Route::get('admin/admin/edit/{id}',[AdminController::class,'edit']);
     Route::post('admin/admin/edit/{id}',[AdminController::class,'update']);
-    Route::get('admin/admin/delete/{id}',[AdminController::class,'delete']);  
+    Route::get('admin/admin/delete/{id}',[AdminController::class,'delete']); 
+    
+    //teacher
+    Route::get('admin/teacher/list',[TeacherController::class,'list']); 
+    Route::get('admin/teacher/add',[TeacherController::class,'add']);
+    Route::post('admin/teacher/add',[TeacherController::class,'insert']);
+    Route::get('admin/teacher/edit/{id}',[TeacherController::class,'edit']);
+    Route::post('admin/teacher/edit/{id}',[TeacherController::class,'update']);
+    Route::get('admin/teacher/delete/{id}',[TeacherController::class,'delete']);
 
     //student
     Route::get('admin/student/list',[StudentController::class,'list']); 

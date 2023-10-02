@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2023 at 01:27 PM
+-- Generation Time: Oct 02, 2023 at 01:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -183,13 +183,31 @@ INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
+  `admission_number` varchar(255) DEFAULT NULL,
+  `roll_number` varchar(50) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `gender` varchar(50) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `caste` varchar(50) DEFAULT NULL,
+  `religion` varchar(50) DEFAULT NULL,
+  `mobile_number` varchar(15) DEFAULT NULL,
+  `admission_date` date DEFAULT NULL,
+  `profile_pic` varchar(100) DEFAULT NULL,
+  `blood_group` varchar(10) DEFAULT NULL,
+  `height` varchar(10) DEFAULT NULL,
+  `weight` varchar(10) DEFAULT NULL,
+  `occupation` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `user_type` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1:Admin,2:Teacher,3:Student,4:Parent',
   `is_delete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:not deleted,1:deleted\r\n',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:active,1:inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -198,14 +216,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `user_type`, `is_delete`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', 'pxqmoXOQvO9TtMuGCnOkVjLN7LCC5p30kglulAX4yuKjy0MECSTIJqbWZW4a', 1, 0, '2023-09-25 07:07:09', '2023-09-27 03:23:05'),
-(3, 'Teacher', 'teacher@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'cnUoDVqZsjRmMvqOuT7rhD4xRpAf3YzJE619CBTm1Iq5dEIl0TktCi8ZuuA8', 2, 0, '2023-09-26 07:21:02', '2023-09-26 07:21:02'),
-(4, 'Parent', 'parent@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'rb2CmLg3xeyrzH8OKxdf3uioiUx0GHyTGe7came2fC7ism0NARp0siv1sUWX', 4, 0, '2023-09-26 07:21:02', '2023-09-26 07:21:02'),
-(5, 'Student', 'student@gmail.com', NULL, '$2y$10$CAn/r2/qmdsu4Pp.x.ASZeOPJK3IevDgTvviOr5H14pYKO2MUXfgi', 'vLR4Pruv8AewnoOoKpPMXTyn1awmv2HyVrcXr686gODRu2X1MyDRsghetwyf', 3, 0, '2023-09-26 07:21:02', '2023-09-27 00:05:47'),
-(6, 'John Doe', 'JohnDoe@gmail', NULL, '$2y$10$XvJeMAotzEUQp0CjjTGarOpJTbhOvcNUcFAwiDPJapHDT8Ko5qdSW', NULL, 1, 1, '2023-09-27 01:09:41', '2023-09-27 03:31:40'),
-(7, 'Abiya Libu', 'abiya@gmail.com', NULL, '$2y$10$WHOZKim/1y2DAuqe/MuZ/eJiNSPAuEY5lhvNYSWIndr0bA/xRh.3.', 'PbhDUPIxVDwDee4w4lvQtmgFxboOKDopnAFqxIdeFCDyTZPYJkolmful6RYM', 1, 0, '2023-09-27 01:24:37', '2023-09-27 03:21:22'),
-(8, 'admin', 'admin123@gmail.com', NULL, '$2y$10$rK5IfZRWzaJ3g/mU2emakue3BsV9QKWORDEp0Q6z9.zqtCCS9vHB2', NULL, 1, 0, '2023-09-27 03:45:37', '2023-09-27 05:02:20');
+INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `occupation`, `address`, `user_type`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', 'pxqmoXOQvO9TtMuGCnOkVjLN7LCC5p30kglulAX4yuKjy0MECSTIJqbWZW4a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-09-27 03:23:05'),
+(3, NULL, 'Teacher', NULL, 'teacher@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'cnUoDVqZsjRmMvqOuT7rhD4xRpAf3YzJE619CBTm1Iq5dEIl0TktCi8ZuuA8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 0, 0, '2023-09-26 07:21:02', '2023-09-26 07:21:02'),
+(4, NULL, 'Parent', 'Dolly', 'parent@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'rb2CmLg3xeyrzH8OKxdf3uioiUx0GHyTGe7came2fC7ism0NARp0siv1sUWX', NULL, NULL, NULL, 'Female', NULL, NULL, NULL, '8281857938', NULL, '20231002065750jrltvosdpjoioqz2bt6d.jfif', NULL, NULL, NULL, '', 'Mandaram', 4, 0, 0, '2023-09-26 07:21:02', '2023-10-02 01:29:54'),
+(5, NULL, 'Student', NULL, 'student@gmail.com', NULL, '$2y$10$CAn/r2/qmdsu4Pp.x.ASZeOPJK3IevDgTvviOr5H14pYKO2MUXfgi', 'vLR4Pruv8AewnoOoKpPMXTyn1awmv2HyVrcXr686gODRu2X1MyDRsghetwyf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-09-26 07:21:02', '2023-09-27 00:05:47'),
+(6, NULL, 'John Doe', NULL, 'JohnDoe@gmail', NULL, '$2y$10$XvJeMAotzEUQp0CjjTGarOpJTbhOvcNUcFAwiDPJapHDT8Ko5qdSW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, '2023-09-27 01:09:41', '2023-09-27 03:31:40'),
+(7, NULL, 'Abiya Libu', NULL, 'abiya@gmail.com', NULL, '$2y$10$WHOZKim/1y2DAuqe/MuZ/eJiNSPAuEY5lhvNYSWIndr0bA/xRh.3.', 'PbhDUPIxVDwDee4w4lvQtmgFxboOKDopnAFqxIdeFCDyTZPYJkolmful6RYM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 01:24:37', '2023-09-27 03:21:22'),
+(8, NULL, 'admin', NULL, 'admin123@gmail.com', NULL, '$2y$10$rK5IfZRWzaJ3g/mU2emakue3BsV9QKWORDEp0Q6z9.zqtCCS9vHB2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 03:45:37', '2023-09-27 05:02:20'),
+(9, 4, 'John Doe', 'd', 'john@gmail.com', NULL, '$2y$10$tGUZCDbc8HhbCIDc.T.cVOK4k412eaog8oJ6dDS8aPo8y78MA2dzG', NULL, '342', '155', 3, 'Male', '2023-09-28', 'fds', 'dsfew', '34657554', '2023-10-01', '20231001054907dugey0ebd04junphkrbx.jpg', 'f', '12', '12', NULL, NULL, 3, 0, 0, '2023-10-01 12:19:07', '2023-10-02 05:00:38'),
+(10, 11, 'Abiya', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$Qjw5NyfAKfUsKw99.gsSFuMMVcqfdgXTPTt67/n8g2fpVcXLzxy/K', NULL, '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231002042118rxgqgyad63uzyzgrejrm.png', '', '', '', NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-02 04:29:35'),
+(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$VR3DCu7OzrXKoAWPBS1HNelY7LXttDTD9U.FRoKlL7YMjBDgUnFAa', NULL, NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231002063722wmoxp46j8wwq9fcenqgu.png', NULL, NULL, NULL, 'Agriculture', 'Kollam India', 4, 0, 0, '2023-10-02 01:07:22', '2023-10-02 01:27:11');
 
 --
 -- Indexes for dumped tables
@@ -307,7 +328,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
