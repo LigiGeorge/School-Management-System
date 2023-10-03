@@ -14,7 +14,11 @@ class UserController extends Controller
     {
         $data['getRecord']=User::getSingle(Auth::user()->id);
         $data['header_title']="My Account";
-        if(Auth::user()->user_type==2)
+        if(Auth::user()->user_type==1)
+        {
+            return view('admin.my_account',$data);
+        }
+        else if(Auth::user()->user_type==2)
         {
             return view('teacher.my_account',$data);
         }
@@ -136,7 +140,19 @@ class UserController extends Controller
         $parent->mobile_number=trim($request->mobile_number);         
         $parent->email=trim($request->email);               
         $parent->save();
-        return redirect()->back()->with('success',"Parent successfully updated");
+        return redirect()->back()->with('success',"Account successfully updated");
+    }
+    public function UpdateMyAccountAdmin(Request $request)
+    {
+        $id=Auth::user()->id;
+        request()->validate([
+            'email'=>'required|email|unique:users,email,'.$id             
+        ]);
+        $admin=User::getSingle($id);
+        $admin->name=trim($request->name);
+        $admin->email=trim($request->email);
+        $admin->save();
+        return redirect()->back()->with('success',"Account successfully updated");
     }
     public function change_password()
     {
