@@ -79,59 +79,34 @@
                   </div>
 
                   <div class="form-group col-md-6">
-                    <label>Class</label><span style="color:red;">*</span>
-                    <select name="class_id" class="form-control" required>
-                        <option value="">Select Class</option>
-                        @foreach($getClass as $value)
-                        <option {{ (old('class_id')== $value->id) ? 'selected' : ''}} value="{{$value->id}}">{{$value->name}}</option>
-                        @endforeach
-                    </select>
-                    <div style="color:red;">{{$errors->first('class_id')}}</div>
+                    <label>Current Address</label><span style="color:red;">*</span>
+                    <textarea name="address" id="" class="form-control" required>{{old('address')}}</textarea>
+                    <div style="color:red;">{{$errors->first('address')}}</div>
                   </div>
 
+                  <div class="form-group col-md-6">
+                    <label>Permanent Address</label><span style="color:red;"></span>
+                    <textarea name="permanent_address" class="form-control">{{old('permanent_address')}}</textarea>
+                    <div style="color:red;">{{$errors->first('permanent_address')}}</div>
+                  </div>
                   
-
-                  
+                  <div class="form-group col-md-6">
+                    <label>Qualification</label><span style="color:red;"></span>
+                    <textarea name="qualification" class="form-control">{{old('qualification')}}</textarea>
+                    <div style="color:red;">{{$errors->first('qualification')}}</div>
+                  </div>                  
 
                   <div class="form-group col-md-6">
-                    <label> Caste </label><span style="color:red;"></span>
-                    <input type="text" class="form-control" name="caste" value="{{old('caste')}}" placeholder="Caste">
-                    <div style="color:red;">{{$errors->first('caste')}}</div>
+                    <label>Work Experience</label><span style="color:red;"></span>
+                    <textarea name="work_experience" class="form-control">{{old('work_experience')}}</textarea>
+                    <div style="color:red;">{{$errors->first('work_experience')}}</div>
                   </div>
 
                   <div class="form-group col-md-6">
-                    <label> Religion </label><span style="color:red;"></span>
-                    <input type="text" class="form-control" name="religion" value="{{old('religion')}}" placeholder="Religion">
-                    <div style="color:red;">{{$errors->first('religion')}}</div>
-                  </div>
-
-                  
-
-                  <div class="form-group col-md-6">
-                    <label>Admission Date</label><span style="color:red;">*</span>
-                    <input type="date" class="form-control" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date">
-                    <div style="color:red;">{{$errors->first('admission_date')}}</div>
-                  </div>
-
-                  
-
-                  <div class="form-group col-md-6">
-                    <label>Blood Group</label><span style="color:red;"></span>
-                    <input type="text" class="form-control" name="blood_group" value="{{old('blood_group')}}" placeholder="Blood Group">
-                    <div style="color:red;">{{$errors->first('blood_group')}}</div>
-                  </div>
-
-                  <div class="form-group col-md-6">
-                    <label>Height</label><span style="color:red;"></span>
-                    <input type="text" class="form-control" name="height" value="{{old('height')}}" placeholder="Height">
-                    <div style="color:red;">{{$errors->first('height')}}</div>
-                  </div>
-
-                  <div class="form-group col-md-6">
-                    <label>Weight</label><span style="color:red;"></span>
-                    <input type="text" class="form-control" name="weight" value="{{old('weight')}}" placeholder="Weight">
-                    <div style="color:red;">{{$errors->first('weight')}}</div>
-                  </div>
+                    <label>Note</label><span style="color:red;"></span>
+                    <textarea name="note" class="form-control">{{old('note')}}</textarea>
+                    <div style="color:red;">{{$errors->first('note')}}</div>
+                  </div>                
 
                   <div class="form-group col-md-6">
                     <label> Status </label><span style="color:red;">*</span>

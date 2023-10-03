@@ -138,5 +138,5 @@ class ParentController extends Controller
         $student->parent_id=null;
         $student->save();
         return redirect()->back()->with('success',"Student Successfully Assign Deleted.");
-    }    
+    }        
 }

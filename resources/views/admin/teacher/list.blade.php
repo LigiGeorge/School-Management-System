@@ -69,12 +69,7 @@
                   <div class="form-group col-md-2">
                     <label>Current Address</label>
                     <input type="text" class="form-control" name="address" value="{{Request::get('address')}}" placeholder="Current Address">                    
-                  </div>
-
-                  <div class="form-group col-md-2">
-                    <label>Address</label>
-                    <input type="text" class="form-control" name="address" value="{{Request::get('address')}}" placeholder="Address">                    
-                  </div>                 
+                  </div>                                   
                   
                   <div class="form-group col-md-2">
                     <label>Status</label>
@@ -88,7 +83,7 @@
                   <div class="form-group col-md-2">
                     <label>Date Of Joining</label>
                     <input type="date" class="form-control" name="admission_date" value="{{Request::get('admission_date')}}">                    
-                  </div
+                  </div>
 
                   <div class="form-group col-md-2">
                     <label>Created Date</label>
@@ -166,9 +161,8 @@
                       <td>{{ ($value->status == 0) ?  'Active' : 'Inactive'}}</td>
                       <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>
                       <td style="min-width: 250px;">
-                        <a href="{{url('admin/parent/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="{{url('admin/parent/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{url('admin/parent/my-student/'.$value->id)}}" class="btn btn-primary btn-sm">My Student</a>
+                        <a href="{{url('admin/teacher/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{url('admin/teacher/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>                        
                       </td>
                     </tr>
                     @endforeach
