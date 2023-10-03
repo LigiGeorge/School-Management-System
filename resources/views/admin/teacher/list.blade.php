@@ -106,7 +106,7 @@
                 <h3 class="card-title">Teacher List</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+              <div class="card-body p-0" style="overflow:auto;">
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -160,7 +160,7 @@
                       <td>{{$value->note}}</td>
                       <td>{{ ($value->status == 0) ?  'Active' : 'Inactive'}}</td>
                       <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>
-                      <td style="min-width: 250px;">
+                      <td style="min-width: 150px;">
                         <a href="{{url('admin/teacher/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
                         <a href="{{url('admin/teacher/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>                        
                       </td>
