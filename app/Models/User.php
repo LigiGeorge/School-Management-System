@@ -305,4 +305,18 @@ class User extends Authenticatable
                    ->orderBy('users.id','desc')
                    ->get();     
     }
+    static public function getTeacherStudent($teacher_id)
+    {
+        return User::select('users.*','class.name as class_name')
+                          ->join('class','class.id','=','users.class_id','left')   
+                          ->join('assign_class_teacher','assign_class_teacher.class_id','=','class.id','left')  
+                          ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+                          ->where('assign_class_teacher.status','=',0)  
+                          ->where('assign_class_teacher.is_delete','=',0)                    
+                          ->where('users.user_type','=',3)
+                          ->where('users.is_delete','=',0) 
+                          ->orderBy('users.id','desc')
+                          ->groupBy('users.id')
+                          ->paginate(20);        
+    }
 }

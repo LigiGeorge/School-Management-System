@@ -123,6 +123,7 @@ Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/account',[UserController::class,'MyAccount']);
     Route::post('teacher/account',[UserController::class,'UpdateMyAccount']);
     Route::get('teacher/my_class_subject',[AssignClassTeacherController::class,'MyClassSubject']);
+    Route::get('teacher/my_student',[StudentController::class,'MyStudent']);
 });
 Route::group(['middleware'=>'student'],function(){
     Route::get('student/dashboard',[DashboardController::class,'dashboard']);
