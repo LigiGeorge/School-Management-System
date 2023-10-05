@@ -17,6 +17,5 @@ class ClassSubjectTimetableModel extends Model
                     ->where('subject_id','=',$subject_id)
                     ->where('week_id','=',$week_id)
                     ->first();
-
     }
 }
