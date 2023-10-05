@@ -32,14 +32,19 @@
                     <select name="class_id" class="form-control getClass" required>
                         <option value="">Select</option>
                         @foreach($getClass as $class)
-                        <option value="{{ $class->id }}">{{ $class->name }}</option>
+                        <option {{ (Request::get('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
                         @endforeach
                     </select>                    
                   </div>  
                   <div class="form-group col-md-3">
                     <label>Subject Name</label>
                     <select name="subject_id" class="form-control getSubject" required>
-                        <option value="">Select</option>                       
+                    <option value="">Select</option>
+                    @if(!empty($getSubject))
+                        @foreach($getSubject as $subject)
+                        <option {{ (Request::get('subject_id') == $subject->subject_id) ? 'selected' : '' }} value="{{ $subject->subject_id }}">{{ $subject->subject_name }}</option>
+                        @endforeach 
+                    @endif                      
                     </select>   
                   </div>                  
 
@@ -51,9 +56,48 @@
                   </div>                                  
                 </div>
               </form>
-            </div>                
-        
-            
+            </div>       
+            @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')))
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Class Timetable</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Week</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Room Number</th>
+                    </tr>
+                  </thead>                  
+                  <tbody>
+                    @foreach($week as $value)
+                    <tr>
+                      <th>{{ $value['week_name'] }}</th>
+                      <td>
+                        <input type="time" name="start_time" class="form-control">
+                      </td>
+                      <td>
+                        <input type="time" name="end_time" class="form-control">
+                      </td>
+                      <td>
+                        <input type="text" name="room_number" style="width: 200px;;" class="form-control">
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                <div style="text-align:center;padding: 20px;">
+                   <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            @endif
+            <!-- /.card -->
             
           </div>
           <!-- /.col -->
@@ -75,18 +119,19 @@
     <script type="text/javascript">
         $('.getClass').change(function()
         {
-            var class_id=$(this).val();
-            $.ajax({
-                url:"{{url('admin/class_timetable/get_subject')}}",
+            var class_id=$(this).val();            
+            $.ajax({              
+                url:"{{ url('admin/class_timetable/get_subject') }}",
                 type:"POST",
-                data:{
+                data:{                 
                     "_token":"{{ csrf_token() }}",
                     class_id:class_id,
-                },
+                },               
                 dataType:"json",
                 success:function(response){
-
+                 $('.getSubject').html(response.html);
                 },
+               
             });
 
         });
