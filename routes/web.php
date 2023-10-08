@@ -124,6 +124,9 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/examinations/exam/edit/{id}',[ExaminationsController::class,'exam_update']); 
     Route::get('admin/examinations/exam/delete/{id}',[ExaminationsController::class,'exam_delete']);
 
+    //exam schedule
+    Route::get('admin/examinations/exam_schedule',[ExaminationsController::class,'exam_schedule']);
+
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
     Route::get('admin/account',[UserController::class,'MyAccount']); 
