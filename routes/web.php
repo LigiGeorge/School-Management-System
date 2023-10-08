@@ -13,6 +13,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
+use App\Http\Controllers\ExaminationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,6 +116,13 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/assign_class_teacher/edit_single/{id}',[AssignClassTeacherController::class,'update_single']);
     Route::get('admin/assign_class_teacher/delete/{id}',[AssignClassTeacherController::class,'delete']);
 
+    //examinations
+    Route::get('admin/examinations/exam/list',[ExaminationsController::class,'exam_list']);
+    Route::get('admin/examinations/exam/add',[ExaminationsController::class,'exam_add']);
+    Route::post('admin/examinations/exam/add',[ExaminationsController::class,'exam_insert']);
+    Route::get('admin/examinations/exam/edit/{id}',[ExaminationsController::class,'exam_edit']);
+    Route::post('admin/examinations/exam/edit/{id}',[ExaminationsController::class,'exam_update']); 
+    Route::get('admin/examinations/exam/delete/{id}',[ExaminationsController::class,'exam_delete']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
@@ -149,4 +157,6 @@ Route::group(['middleware'=>'parent'],function(){
     Route::post('parent/account',[UserController::class,'UpdateMyAccountParent']);  
     Route::get('parent/my_student',[ParentController::class,'myStudentParent']);   
     Route::get('parent/my_student/subject/{student_id}',[SubjectController::class,'ParentStudentSubject']);
+    Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}',
+              [ClassTimetableController::class,'MyTimetableParent']);
 });

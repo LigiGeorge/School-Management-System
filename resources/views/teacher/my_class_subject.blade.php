@@ -51,8 +51,10 @@
                         $ClassSubject = $value->getMyTimetable($value->class_id,$value->subject_id);
                         @endphp
                         @if(!empty($ClassSubject))
-                       {{ $ClassSubject->start_time }} to {{ $ClassSubject->end_time }}
-                        @endif
+                       {{ date('h:i A',strtotime($ClassSubject['start_time'])) }} to {{ date('h:i A',strtotime($ClassSubject['end_time'])) }}
+                         <br>
+                         Room Number : {{ $ClassSubject->room_number }}
+                       @endif
                       </td>
                       <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>  
                       <td>
