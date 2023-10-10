@@ -14,6 +14,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationsController;
+use App\Http\Controllers\CalenderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -154,6 +155,7 @@ Route::group(['middleware'=>'student'],function(){
     Route::get('student/my_subject',[SubjectController::class,'MySubject']);
     Route::get('student/my_timetable',[ClassTimetableController::class,'MyTimetable']);
     Route::get('student/my_exam_timetable',[ExaminationsController::class,'MyExamTimetable']);  
+    Route::get('student/my_calender',[CalenderController::class,'MyCalender']);
 });
 Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/dashboard',[DashboardController::class,'dashboard']);
