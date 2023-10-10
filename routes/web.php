@@ -143,6 +143,7 @@ Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/my_class_subject',[AssignClassTeacherController::class,'MyClassSubject']);
     Route::get('teacher/my_class_subject/class_timetable/{class_id}/{subject_id}',[ClassTimetableController::class,'MyTimetableTeacher']);
     Route::get('teacher/my_student',[StudentController::class,'MyStudent']);
+    Route::get('teacher/my_exam_timetable',[ExaminationsController::class,'MyExamTimetableTeacher']);
 });
 Route::group(['middleware'=>'student'],function(){
     Route::get('student/dashboard',[DashboardController::class,'dashboard']);
