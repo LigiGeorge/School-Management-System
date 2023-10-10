@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2023 at 12:39 PM
+-- Generation Time: Oct 10, 2023 at 01:29 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -113,7 +113,8 @@ INSERT INTO `class_subject` (`id`, `class_id`, `subject_id`, `created_by`, `is_d
 (30, 3, 5, 1, 0, 0, '2023-10-03 09:42:06', '2023-10-03 09:42:06'),
 (31, 2, 5, 1, 0, 0, '2023-10-04 04:17:55', '2023-10-04 04:17:55'),
 (32, 2, 6, 1, 0, 0, '2023-10-04 04:17:55', '2023-10-04 04:17:55'),
-(33, 4, 7, 1, 0, 0, '2023-10-04 04:37:44', '2023-10-04 04:37:44');
+(33, 4, 7, 1, 0, 0, '2023-10-04 04:37:44', '2023-10-04 04:37:44'),
+(34, 1, 1, 1, 0, 0, '2023-10-10 06:48:12', '2023-10-10 06:48:12');
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,8 @@ INSERT INTO `class_subject_timetable` (`id`, `class_id`, `subject_id`, `week_id`
 (22, 3, 5, 2, '19:30', '14:36', '235', '2023-10-05 10:58:03', '2023-10-05 10:58:03'),
 (23, 3, 5, 3, '18:45', '19:45', '104', '2023-10-05 10:58:03', '2023-10-05 10:58:03'),
 (24, 3, 5, 5, '18:25', '19:25', '5659', '2023-10-05 10:58:03', '2023-10-05 10:58:03'),
-(25, 3, 5, 6, '20:45', '22:45', '147', '2023-10-05 10:58:03', '2023-10-05 10:58:03');
+(25, 3, 5, 6, '20:45', '22:45', '147', '2023-10-05 10:58:03', '2023-10-05 10:58:03'),
+(26, 3, 6, 1, '17:14', '19:14', '150', '2023-10-10 10:44:37', '2023-10-10 10:44:37');
 
 -- --------------------------------------------------------
 
@@ -172,6 +174,42 @@ INSERT INTO `exam` (`id`, `name`, `note`, `created_by`, `is_delete`, `created_at
 (1, 'First Term', 'testing changed', 1, 0, '2023-10-06 05:15:30', '2023-10-06 08:49:32'),
 (2, 'Model Exam 2023-2024', 'Checking', 1, 0, '2023-10-07 05:17:01', '2023-10-08 08:47:26'),
 (3, 'Special', 'Exam', 1, 0, '2023-10-08 09:11:42', '2023-10-08 09:11:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_schedule`
+--
+
+CREATE TABLE `exam_schedule` (
+  `id` int(11) NOT NULL,
+  `exam_id` int(11) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  `exam_date` date DEFAULT NULL,
+  `start_time` varchar(25) DEFAULT NULL,
+  `end_time` varchar(25) DEFAULT NULL,
+  `room_number` varchar(25) DEFAULT NULL,
+  `full_marks` varchar(25) DEFAULT NULL,
+  `passing_mark` varchar(25) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exam_schedule`
+--
+
+INSERT INTO `exam_schedule` (`id`, `exam_id`, `class_id`, `subject_id`, `exam_date`, `start_time`, `end_time`, `room_number`, `full_marks`, `passing_mark`, `created_by`, `created_at`, `updated_at`) VALUES
+(4, 1, 3, 5, '2023-10-10', '10:32', '11:32', '568', '100', '45', 1, '2023-10-10 04:28:39', '2023-10-10 04:28:39'),
+(5, 1, 3, 6, '2023-10-11', '11:32', '12:32', '0147', '50', '25', 1, '2023-10-10 04:28:39', '2023-10-10 04:28:39'),
+(6, 1, 3, 2, '2023-10-20', '11:00', '12:00', 'S23', '200', '100', 1, '2023-10-10 04:28:39', '2023-10-10 04:28:39'),
+(8, 2, 3, 5, '2023-10-20', '09:00', '11:00', 'Q12', '100', '45', 1, '2023-10-10 04:30:16', '2023-10-10 04:30:16'),
+(9, 2, 3, 6, '2023-10-27', '13:00', '14:00', '3456', '50', '25', 1, '2023-10-10 04:30:16', '2023-10-10 04:30:16'),
+(11, 2, 2, 6, '2023-10-26', '11:01', '12:00', 'PX963', '100', '30', 1, '2023-10-10 04:32:15', '2023-10-10 04:32:15'),
+(12, 3, 4, 7, '2023-10-11', '17:16', '18:16', 'ZS2', '100', '45', 1, '2023-10-10 06:46:24', '2023-10-10 06:46:24'),
+(13, 1, 1, 1, '2023-11-01', '08:00', '09:00', '230', '150', '75', 1, '2023-10-10 06:49:08', '2023-10-10 06:49:08');
 
 -- --------------------------------------------------------
 
@@ -319,7 +357,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `occupation`, `marital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', 'QJk33grbncZFF83vlkeSwSWXrlpXdF2OBk14IXQpT1YrCUq6LNoLITFza7Af', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-03 00:30:38'),
+(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', 'qhwqw18QyTXZqCYLBuGEdFn64eN9gOkwFzpziamPRl6HvtrjDaTO9VxBQ8Ek', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-03 00:30:38'),
 (3, NULL, 'Teacher', 'Anny', 'teacher@gmail.com', NULL, '$2y$10$uEBlKcFk/EkG7JchH8M71O1ks9QYoRBQO6aIoNrMJ3Zuw2sBNxfMq', 'cnUoDVqZsjRmMvqOuT7rhD4xRpAf3YzJE619CBTm1Iq5dEIl0TktCi8ZuuA8', NULL, NULL, NULL, 'Female', '2023-09-27', NULL, NULL, '7845120369', '2023-10-01', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-09-26 07:21:02', '2023-10-02 12:04:15'),
 (4, NULL, 'Parent', 'Dolly', 'parent@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'rb2CmLg3xeyrzH8OKxdf3uioiUx0GHyTGe7came2fC7ism0NARp0siv1sUWX', NULL, NULL, NULL, 'Female', NULL, NULL, NULL, '8281857938', NULL, '20231002065750jrltvosdpjoioqz2bt6d.jfif', NULL, NULL, NULL, '', NULL, 'Mandaram', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-09-26 07:21:02', '2023-10-02 01:29:54'),
 (5, 11, 'Evan', 'Libu', 'evan@gmail.com', NULL, '$2y$10$caWtWw..30RrQs91CV23EOTaGWdPB.yHu3wEb/zR.UyJHpDP1vNse', 'f2TToXkr2sSLopeNig7qjSyhxOFfWTKNuyBs6XkWcREMWbny13IG6sZZsrKh', '2132', '76', 2, 'Male', '2023-08-05', 'No caste', 'no religion', '7356217922', '2023-09-28', NULL, 'A', '100', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-09-26 07:21:02', '2023-10-04 03:36:47'),
@@ -327,9 +365,9 @@ INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_ver
 (7, NULL, 'Abiya Libu', NULL, 'abiya@gmail.com', NULL, '$2y$10$WHOZKim/1y2DAuqe/MuZ/eJiNSPAuEY5lhvNYSWIndr0bA/xRh.3.', 'PbhDUPIxVDwDee4w4lvQtmgFxboOKDopnAFqxIdeFCDyTZPYJkolmful6RYM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 01:24:37', '2023-09-27 03:21:22'),
 (8, NULL, 'admin', NULL, 'admin123@gmail.com', NULL, '$2y$10$rK5IfZRWzaJ3g/mU2emakue3BsV9QKWORDEp0Q6z9.zqtCCS9vHB2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 03:45:37', '2023-09-27 05:02:20'),
 (9, 4, 'John Doe', 'd', 'john@gmail.com', NULL, '$2y$10$tGUZCDbc8HhbCIDc.T.cVOK4k412eaog8oJ6dDS8aPo8y78MA2dzG', NULL, '342', '155', 2, 'Male', '2023-09-28', 'fds', 'dsfew', '34657554', '2023-10-01', '20231001054907dugey0ebd04junphkrbx.jpg', 'f', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 12:19:07', '2023-10-04 03:32:03'),
-(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', 'YBRa0WQzBTsfkDtgjpGqXqYgVkK7CUvSt9KWUh3nFRUH9k1sbe7XsArsSXRD', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231002042118rxgqgyad63uzyzgrejrm.png', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-02 23:52:09'),
-(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', '5YkuoGfuZyGOB1V3Wi0shxCSRRRXMDiaUyinyrZBf42acSH5i5X6rIZUQv3P', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-06 03:40:42'),
-(12, NULL, 'Beena', 'A Philipose', 'beena123@gmail.com', NULL, '$2y$10$yF/oAcHFS/rEczjEfrSBpeVdd5iM0JLjgectMwh590Y2JwILAd8su', 'RgN41iWHmf3iYFZAZ213uvIeFWJOtVCusU5k33aPJMhQoAaRnZCgEWmT2ETd', NULL, NULL, NULL, 'Female', '2023-06-03', NULL, NULL, '9863251478', '2023-10-03', '20231002050942zv1bfylfuvhuxyahl8ug.jpg', NULL, NULL, NULL, NULL, 'Married', 'Swargam', 'Tvm', 'MTech', '2 Years', 'nothing', 2, 0, 0, '2023-10-02 11:39:42', '2023-10-02 23:19:30'),
+(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', 'gxqdQ2aY0zddYiqIIpNXD2Gxuj5Uh6FAAZPmSNKzgcrFGFCP7OEIlMfdYX65', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231002042118rxgqgyad63uzyzgrejrm.png', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-02 23:52:09'),
+(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', 'GNw0Vr3BKFhNQlu8f47CrFyS5Xjn6wL5TalHt2NbgOwXIGPL5Zz59kJEcQUg', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-06 03:40:42'),
+(12, NULL, 'Beena', 'A Philipose', 'beena123@gmail.com', NULL, '$2y$10$yF/oAcHFS/rEczjEfrSBpeVdd5iM0JLjgectMwh590Y2JwILAd8su', '2oBn5NfgOKoHVn4n0nBLwyrOuuZEeT0Yau8umoYE8OVRAFj8jBxqrU6Mk7Xb', NULL, NULL, NULL, 'Female', '2023-06-03', NULL, NULL, '9863251478', '2023-10-03', '20231002050942zv1bfylfuvhuxyahl8ug.jpg', NULL, NULL, NULL, NULL, 'Married', 'Swargam', 'Tvm', 'MTech', '2 Years', 'nothing', 2, 0, 0, '2023-10-02 11:39:42', '2023-10-02 23:19:30'),
 (13, NULL, 'Aneesha', 'A', 'aneesha@gmail.com', NULL, '$2y$10$bmGusTThrDlojvQUiW5a2uNj9ZFHth6uSf.dcMVXc7HpH/xZuOwbu', NULL, NULL, NULL, NULL, 'Female', '2023-06-02', NULL, NULL, '9863252586', '2023-03-18', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:22:29', '2023-10-03 05:22:29'),
 (14, NULL, 'Nivin', 'VIncent', 'nivin@gmail.com', NULL, '$2y$10$DuumRBayjBm2Zy27Xro7UuBrQ9RNLrAJcX1gsAjfwzX5RRYYdTMUS', '9MWezlXUDBAJ2JJQaovIeovj7IFpR1k15uw4BmYMEYGaXuOalHoOoXnWQtyd', NULL, NULL, NULL, 'Male', '2023-06-30', NULL, NULL, '', '2023-05-19', NULL, NULL, NULL, NULL, NULL, '', 'kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:25:34', '2023-10-03 05:25:34');
 
@@ -342,6 +380,7 @@ INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_ver
 CREATE TABLE `week` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `fullcalender_day` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -350,14 +389,14 @@ CREATE TABLE `week` (
 -- Dumping data for table `week`
 --
 
-INSERT INTO `week` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Monday', NULL, NULL),
-(2, 'Tuesday', NULL, NULL),
-(3, 'Wednesday', NULL, NULL),
-(4, 'Thursday', NULL, NULL),
-(5, 'Friday', NULL, NULL),
-(6, 'Saturday', NULL, NULL),
-(7, 'Sunday', NULL, NULL);
+INSERT INTO `week` (`id`, `name`, `fullcalender_day`, `created_at`, `updated_at`) VALUES
+(1, 'Monday', 1, NULL, NULL),
+(2, 'Tuesday', 2, NULL, NULL),
+(3, 'Wednesday', 3, NULL, NULL),
+(4, 'Thursday', 4, NULL, NULL),
+(5, 'Friday', 5, NULL, NULL),
+(6, 'Saturday', 6, NULL, NULL),
+(7, 'Sunday', 0, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -391,6 +430,12 @@ ALTER TABLE `class_subject_timetable`
 -- Indexes for table `exam`
 --
 ALTER TABLE `exam`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `exam_schedule`
+--
+ALTER TABLE `exam_schedule`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -459,19 +504,25 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `class_subject`
 --
 ALTER TABLE `class_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `class_subject_timetable`
 --
 ALTER TABLE `class_subject_timetable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `exam_schedule`
+--
+ALTER TABLE `exam_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`

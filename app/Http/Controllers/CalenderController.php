@@ -6,14 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\WeekModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ClassSubjectTimetableModel;
+use App\Models\ExamScheduleModel;
 use Auth;
 
 class CalenderController extends Controller
 {
     public function MyCalender()
     {   
+        //timetable         
+        $data['getMyTimetable'] = $this->getTimetable(Auth::user()->class_id);   
+        $data['getExamTimetable'] = $this->getExamTimetable(Auth::user()->class_id); 
+        $data['header_title']="My Calender";
+        return view('student.my_calender',$data);
+    }
+    public function getTimetable($class_id)
+    {
         $result = array();
-        $getRecord = ClassSubjectModel::MySubject(Auth::user()->class_id);
+        $getRecord = ClassSubjectModel::MySubject($class_id);
         foreach($getRecord as $value)
         {
             $dataS['name'] = $value->subject_name;
@@ -36,10 +45,34 @@ class CalenderController extends Controller
             }
             $dataS['week'] = $week; 
             $result[] = $dataS;
-        }        
-        $data['getMyTimetable'] = $result;
-        $data['getRecord'] = $result;            
-        $data['header_title']="My Calender";
-        return view('student.my_calender',$data);
+        }  
+        return $result;              
+    }
+    public function getExamTimetable($class_id)
+    {
+        $getExam = ExamScheduleModel::getExam($class_id);
+        $result = array();
+        foreach($getExam as $value)
+        {
+            $dataE = array();
+            $dataE['name'] = $value->exam_name;
+            $getExamTimetable = ExamScheduleModel::getExamTimetable($value->exam_id,$class_id);
+            $resultS = array();
+            foreach($getExamTimetable as $valueS)
+            {
+                $dataS = array();
+                $dataS['subject_name'] = $valueS->subject_name;
+                $dataS['exam_date'] = $valueS->exam_date;
+                $dataS['start_time'] = $valueS->start_time;
+                $dataS['end_time'] = $valueS->end_time;
+                $dataS['room_number'] = $valueS->room_number;
+                $dataS['full_marks'] = $valueS->full_marks;
+                $dataS['passing_mark'] = $valueS->passing_mark;
+                $resultS[] = $dataS;
+            }
+            $dataE['exam'] = $resultS;
+            $result[] = $dataE;
+        }
+        return $result;
     }
 }
