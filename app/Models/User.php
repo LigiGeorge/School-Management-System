@@ -319,4 +319,13 @@ class User extends Authenticatable
                           ->groupBy('users.id')
                           ->paginate(20);        
     }
+    static public function getStudentClass($class_id)
+    {
+        return User::select('users.id','users.name','users.last_name')                    
+                    ->where('users.user_type','=',3)
+                    ->where('users.is_delete','=',0)
+                    ->where('users.class_id','=',$class_id)
+                    ->orderBy('users.id','desc')
+                    ->get();        
+    }
 }
