@@ -8,6 +8,7 @@ use App\Models\ClassSubjectModel;
 use App\Models\ClassSubjectTimetableModel;
 use App\Models\ExamScheduleModel;
 use App\Models\User;
+use App\Models\AssignClassTeacherModel;
 use Auth;
 
 class CalenderController extends Controller
@@ -86,5 +87,14 @@ class CalenderController extends Controller
         $data['getStudent'] = $getStudent;
         $data['header_title']="Student Calendar";
         return view('parent.my_calender',$data);
+    }
+
+    //teacher side
+    public function MyCalendarTeacher()
+    {
+        $teacher_id = Auth::user()->id;
+        $data['getClassTimetable'] = AssignClassTeacherModel::getCalendarTeacher($teacher_id);
+        $data['header_title']="Student Calendar";
+        return view('teacher.my_calendar',$data);
     }
 }
