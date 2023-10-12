@@ -29,20 +29,30 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>                     
-                      <th>Subject Name</th>
+                      <th>Subject</th>
                       <th>Class Work</th> 
                       <th>Home Work</th>
                       <th>Test Work</th> 
                       <th>Exam</th>   
                       <th>Total Score</th> 
                       <th>Passing Marks</th>         
-                      <th>Full Marks</th>      
+                      <th>Full Marks</th>  
+                      <th>Result</th>    
                     </tr>
                   </thead>
                   <tbody>
+                   @php
+                      $total_score = 0;
+                      $full_marks = 0;
+                      $result_validation = 0;
+                   @endphp
                    @foreach($value['subject'] as $exam)
+                      @php
+                        $total_score = $total_score + $exam['total_score'];
+                        $full_marks = $full_marks + $exam['full_marks'];
+                      @endphp
                    <tr>
-                    <td>{{ $exam['subject_name'] }}</td>
+                    <td style="width: 200px;">{{ $exam['subject_name'] }}</td>
                     <td>{{ $exam['class_work'] }}</td>
                     <td>{{ $exam['home_work'] }}</td>
                     <td>{{ $exam['test_work'] }}</td>
@@ -50,8 +60,29 @@
                     <td>{{ $exam['total_score'] }}</td>
                     <td>{{ $exam['passing_mark'] }}</td>
                     <td>{{ $exam['full_marks'] }}</td>
+                    <td>
+                     @if($exam['total_score'] >= $exam['passing_mark'])
+                     <span style="color:green; font-weight:bold;">Passed</span>
+                     @else
+                        @php
+                          $result_validation = 1;
+                        @endphp
+                     <span style="color:red;font-weight:bold;">Failed</span>
+                     @endif
+                    </td>
                    </tr>
                    @endforeach
+                   <tr>
+                    <td colspan="2"><b>Grand Total : {{ $total_score }}/{{ $full_marks }}</b></td>
+                    <td colspan="2"><b>Percentage : {{round(($total_score * 100)/ $full_marks,2) }}%</b></td>
+                    <td colspan="5"><b>Result : 
+                      @if($result_validation == 0) 
+                      <span style="color:green;">Passed</span>
+                      @else 
+                      <span style="color:red;">Failed</span>
+                      @endif</b>
+                    </td>
+                   </tr>
                   </tbody>
                 </table>
                 
