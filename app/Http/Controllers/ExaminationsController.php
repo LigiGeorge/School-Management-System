@@ -438,4 +438,11 @@ class ExaminationsController extends Controller
         $data['header_title']="My Exam Result";
         return view('parent.my_exam_result',$data); 
     }
+
+    //admin side work
+    public function marks_grade()
+    {
+        $data['header_title']="Marks Grade";
+        return view('admin.examinations.marks_grade.list',$data);  
+    }
 }
