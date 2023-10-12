@@ -132,6 +132,7 @@ Route::group(['middleware'=>'admin'],function(){
     //marks register
     Route::get('admin/examinations/marks_register',[ExaminationsController::class,'marks_register']);
     Route::post('admin/examinations/submit_marks_register',[ExaminationsController::class,'submit_marks_register']);
+    Route::post('admin/examinations/single_submit_marks_register',[ExaminationsController::class,'single_submit_marks_register']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);

@@ -60,4 +60,8 @@ class ExamScheduleModel extends Model
                                 ->get();
 
     }
+    static public function getMark($student_id,$exam_id,$class_id,$subject_id)
+    {
+        return MarksRegisterModel::CheckAlreadyMark($student_id,$exam_id,$class_id,$subject_id);
+    }
 }
