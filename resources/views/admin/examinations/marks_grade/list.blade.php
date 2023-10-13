@@ -11,7 +11,7 @@
             <h1>Marks Grade</h1>
           </div>
           <div class="col-sm-6" style="text-align:right;">
-            <a href="{{url('admin/examinations/marks_grade/add')}}" class="btn btn-primary">Add New Exam</a>
+            <a href="{{url('admin/examinations/marks_grade/add')}}" class="btn btn-primary">Add New Marks Grade</a>
           </div>          
         </div>
       </div><!-- /.container-fluid -->
@@ -27,23 +27,35 @@
             <div class="card">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Exam List</h3>
+                <h3 class="card-title">Marks Grade List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Exam Name</th>
-                      <th>Note</th>
+                     <th>Grade Name</th>
+                      <th>Percent From</th>
+                      <th>Percent To</th>
                       <th>Created By</th>
                       <th>Created Date</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                   
+                  @foreach($getRecord as $value)
+                    <tr>
+                      <td>{{$value->name}}</td>
+                      <td>{{$value->percent_from}}</td> 
+                      <td>{{$value->percent_to}}</td>
+                      <td>{{$value->created_name}}</td>  
+                      <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>                     
+                      <td>
+                        <a href="{{url('admin/examinations/marks_grade/edit/'.$value->id)}}" class="btn btn-primary">Edit</a>
+                        <a href="{{url('admin/examinations/marks_grade/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                      </td>
+                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
                 
