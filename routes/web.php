@@ -15,6 +15,7 @@ use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,6 +142,9 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/examinations/marks_grade/edit/{id}',[ExaminationsController::class,'marks_grade_edit']);
     Route::post('admin/examinations/marks_grade/edit/{id}',[ExaminationsController::class,'marks_grade_update']);
     Route::get('admin/examinations/marks_grade/delete/{id}',[ExaminationsController::class,'marks_grade_delete']); 
+
+    //attendance
+    Route::get('admin/attendance/student',[AttendanceController::class,'AttendanceStudent']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
