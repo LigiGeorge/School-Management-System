@@ -44,7 +44,7 @@
                      <select name="class_id" class="form-control">
                         <option value="">Select</option>
                         @foreach($getClass as $class)
-                        <option {{ (Request::get('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
+                        <option {{ (Request::get('class_id') == $class->class_id) ? 'selected' : '' }} value="{{ $class->class_id }}">{{ $class->class_name }}</option>
                         @endforeach
                      </select>  
                   </div> 
@@ -65,7 +65,7 @@
 
                   <div class="form-group col-md-2">
                     <button class="btn btn-primary" type="submit" style="margin-top:30px;">Search</button>
-                    <a href="{{url('admin/attendance/report')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <a href="{{url('teacher/attendance/report')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
                   </div>
 
                   </div>                                  
@@ -93,6 +93,7 @@
                         </tr>                        
                     </thead>
                     <tbody>
+                    @if(!empty($getRecord))
                     @forelse($getRecord as $value)
                         <tr>
                             <td>{{ $value->student_id }}</td>
@@ -114,11 +115,18 @@
                             <td colspan="100%">Record Not Found</td>
                         </tr>
                     @endforelse
+                    @else
+                        <tr>
+                            <td colspan="100%">Record Not Found</td>
+                        </tr>
+                    @endif                   
                     </tbody>
-                </table>  
+                </table> 
+                @if(!empty($getRecord)) 
                 <div style="padding:10px;float:right;">
                 {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div> 
+                @endif
               </div> 
               </div>  
             </div>            
