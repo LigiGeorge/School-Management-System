@@ -7,6 +7,7 @@ use App\Models\ClassModel;
 use App\Models\User;
 use App\Models\StudentAttendanceModel;
 use Auth;
+use App\Models\AssignClassTeacherModel;
 
 class AttendanceController extends Controller
 {
@@ -46,5 +47,17 @@ class AttendanceController extends Controller
         $data['getRecord'] = StudentAttendanceModel::getRecord();
         $data['header_title']="Attendance Report";
         return view('admin.attendance.report',$data);
+    }
+
+    //teacher side
+    public function AttendanceStudentTeacher(Request $request)
+    {
+        $data['getClass'] = AssignClassTeacherModel::getMyClassSubjectGroup(Auth::user()->id);
+        if(!empty($request->get('class_id')) && !empty($request->get('attendance_date')))
+        {
+            $data['getStudent'] = User::getStudentClass($request->get('class_id'));
+        }
+        $data['header_title']="Student Attendance";
+        return view('teacher.attendance.student',$data);
     }
 }

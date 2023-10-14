@@ -168,6 +168,8 @@ Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/marks_register',[ExaminationsController::class,'marks_register_teacher']);
     Route::post('teacher/submit_marks_register',[ExaminationsController::class,'submit_marks_register']);
     Route::post('teacher/single_submit_marks_register',[ExaminationsController::class,'single_submit_marks_register']);
+    Route::get('teacher/attendance/student',[AttendanceController::class,'AttendanceStudentTeacher']);
+    Route::post('teacher/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
 });
 Route::group(['middleware'=>'student'],function(){
     Route::get('student/dashboard',[DashboardController::class,'dashboard']);
