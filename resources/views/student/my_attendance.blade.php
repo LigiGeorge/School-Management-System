@@ -47,8 +47,12 @@
                      </select>
                   </div> 
                   <div class="form-group col-md-3">
-                    <label>Attendance Date</label>
-                     <input type="date" name="attendance_date" value="{{ Request::get('attendance_date') }}" class="form-control"> 
+                    <label>Start Attendance Date</label>
+                     <input type="date" name="start_attendance_date" value="{{ Request::get('start_attendance_date') }}" class="form-control"> 
+                  </div>                   
+                  <div class="form-group col-md-3">
+                    <label>End Attendance Date</label>
+                     <input type="date" name="end_attendance_date" value="{{ Request::get('end_attendance_date') }}" class="form-control"> 
                   </div>                   
                   <div class="form-group col-md-3">
                     <button class="btn btn-primary" type="submit" style="margin-top:30px;">Search</button>
