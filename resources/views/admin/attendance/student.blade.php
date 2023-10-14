@@ -29,7 +29,7 @@
                   <div class="row">                  
                   <div class="form-group col-md-3">
                     <label>Class</label>
-                     <select name="class_id" class="form-control" required >
+                     <select name="class_id" class="form-control" id="getClass" required >
                         <option value="">Select</option>
                         @foreach($getClass as $class)
                         <option {{ (Request::get('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
@@ -38,7 +38,7 @@
                   </div> 
                   <div class="form-group col-md-3">
                     <label>Attendance Date</label>
-                     <input type="date" name="attendance_date" value="{{ Request::get('attendance_date') }}" class="form-control" required> 
+                     <input type="date" id="getAttendanceDate" name="attendance_date" value="{{ Request::get('attendance_date') }}" class="form-control" required> 
                   </div>                
 
                   <div class="form-group col-md-3">
@@ -70,14 +70,30 @@
                     <tbody>
                     @if(!empty($getStudent) && !empty($getStudent->count()))
                         @foreach($getStudent as $value)
+                            @php
+                                $attendance_type = '';
+                                $getAttendance = $value->getAttendance($value->id,Request::get('class_id'),Request::get('attendance_date'));
+                                if(!empty($getAttendance->attendance_type))
+                                {
+                                    $attendance_type = $getAttendance->attendance_type;
+                                }
+                            @endphp
                             <tr>
                                 <td>{{ $value->id }}</td>
                                 <td>{{ $value->name }} {{ $value->last_name }}</td>
                                 <td>
-                                    <label style="margin-right :10px;"><input type="radio" name="attendance{{ $value->id }}"> Present</label>
-                                    <label style="margin-right :10px;"><input type="radio" name="attendance{{ $value->id }}"> Late</label>
-                                    <label style="margin-right :10px;"><input type="radio" name="attendance{{ $value->id }}"> Absent</label>
-                                    <label style="margin-right :10px;"><input type="radio" name="attendance{{ $value->id }}"> Half Day</label>
+                                    <label style="margin-right :10px;">
+                                        <input type="radio" {{ $attendance_type == '1' ? 'checked' : '' }} id="{{ $value->id }}" class="SaveAttendance" name="attendance{{ $value->id }}" value="1"> Present
+                                    </label>
+                                    <label style="margin-right :10px;">
+                                        <input type="radio" {{ $attendance_type == '2' ? 'checked' : '' }} id="{{ $value->id }}" class="SaveAttendance" name="attendance{{ $value->id }}" value="2"> Late
+                                    </label>
+                                    <label style="margin-right :10px;">
+                                        <input type="radio" {{ $attendance_type == '3' ? 'checked' : '' }} id="{{ $value->id }}" class="SaveAttendance" name="attendance{{ $value->id }}" value="3"> Absent
+                                    </label>
+                                    <label style="margin-right :10px;">
+                                        <input type="radio" {{ $attendance_type == '4' ? 'checked' : '' }} id="{{ $value->id }}" class="SaveAttendance" name="attendance{{ $value->id }}" value="4"> Half Day
+                                    </label>
                                 </td>
                             </tr>
                         @endforeach
@@ -98,5 +114,31 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  @endsection
+  @section('script')
+  <script type="text/javascript">
+    $('.SaveAttendance').change(function(e){       
+      var student_id = $(this).attr('id');
+      var attendance_type = $(this).val();
+      var class_id = $('#getClass').val();
+      var attendance_date = $('#getAttendanceDate').val();
+     
+      $.ajax({
+            type : "POST",
+            url : "{{ url('admin/attendance/student/save') }}",
+            data : {
+              "_token" : "{{ csrf_token() }}",
+              student_id : student_id,
+              attendance_type : attendance_type,
+              class_id : class_id,
+              attendance_date : attendance_date,
+            },
+            dataType : "json",
+            success : function(data){
+              alert(data.message);
+            }            
+        });        
+    });
+  </script>
   @endsection
   

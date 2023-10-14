@@ -145,6 +145,7 @@ Route::group(['middleware'=>'admin'],function(){
 
     //attendance
     Route::get('admin/attendance/student',[AttendanceController::class,'AttendanceStudent']);
+    Route::post('admin/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
