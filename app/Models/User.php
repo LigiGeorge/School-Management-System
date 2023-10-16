@@ -47,6 +47,17 @@ class User extends Authenticatable
     {
         return User::find($id);
     }
+    static public function SearchUser($search)
+    {
+        $return  = self::select('users.*')
+                       ->where(function($query) use($search){
+                              $query->where('users.name','like','%'.$search.'%')
+                                    ->orWhere('users.last_name','like','%'.$search.'%');
+                    })
+                    ->limit(10)
+                    ->get();  
+        return $return;       
+    }
     static public function getAdmin()
     {
         $return = User::select('users.*')

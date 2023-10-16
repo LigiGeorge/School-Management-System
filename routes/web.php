@@ -149,13 +149,18 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
     Route::get('admin/attendance/report',[AttendanceController::class,'AttendanceReport']);
 
-    //communicate
+    //communicate -notice board
     Route::get('admin/communicate/notice_board',[CommunicateController::class,'NoticeBoard']);
     Route::get('admin/communicate/notice_board/add',[CommunicateController::class,'AddNoticeBoard']);
     Route::post('admin/communicate/notice_board/add',[CommunicateController::class,'InsertNoticeBoard']);
     Route::get('admin/communicate/notice_board/edit/{id}',[CommunicateController::class,'EditNoticeBoard']);
     Route::post('admin/communicate/notice_board/edit/{id}',[CommunicateController::class,'UpdateNoticeBoard']);
     Route::get('admin/communicate/notice_board/delete/{id}',[CommunicateController::class,'DeleteNoticeBoard']);
+
+    //communicate - send email
+    Route::get('admin/communicate/send_email',[CommunicateController::class,'SendEmail']);
+    Route::post('admin/communicate/send_email',[CommunicateController::class,'SendEmailUser']);
+    Route::get('admin/communicate/search_user',[CommunicateController::class,'SearchUser']);    
     
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
