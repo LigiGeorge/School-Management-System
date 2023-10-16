@@ -181,6 +181,7 @@ Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/attendance/student',[AttendanceController::class,'AttendanceStudentTeacher']);
     Route::post('teacher/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
     Route::get('teacher/attendance/report',[AttendanceController::class,'AttendanceReportTeacher']);
+    Route::get('teacher/my_notice_board',[CommunicateController::class,'MyNoticeBoardTeacher']);
 });
 Route::group(['middleware'=>'student'],function(){
     Route::get('student/dashboard',[DashboardController::class,'dashboard']);
