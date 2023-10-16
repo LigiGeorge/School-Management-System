@@ -16,6 +16,7 @@ use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CommunicateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -147,6 +148,12 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/attendance/student',[AttendanceController::class,'AttendanceStudent']);
     Route::post('admin/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
     Route::get('admin/attendance/report',[AttendanceController::class,'AttendanceReport']);
+
+    //communicate
+    Route::get('admin/communicate/notice_board',[CommunicateController::class,'NoticeBoard']);
+    Route::get('admin/communicate/notice_board/add',[CommunicateController::class,'AddNoticeBoard']);
+    Route::post('admin/communicate/notice_board/add',[CommunicateController::class,'InsertNoticeBoard']);
+    
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
