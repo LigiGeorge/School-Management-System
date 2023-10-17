@@ -343,4 +343,12 @@ class User extends Authenticatable
     {
       return StudentAttendanceModel::CheckAlreadyAttendance($student_id,$class_id,$attendance_date);
     }
+    static public function getUser($user_type)
+    {
+      return self::select('users.*')
+                  ->where('user_type','=',$user_type)
+                  ->where('is_delete','=',0)
+                  ->get();
+
+    }
 }

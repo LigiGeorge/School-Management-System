@@ -17,6 +17,7 @@ use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CommunicateController;
+use App\Http\Controllers\HomeworkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -162,6 +163,11 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('admin/communicate/send_email',[CommunicateController::class,'SendEmailUser']);
     Route::get('admin/communicate/search_user',[CommunicateController::class,'SearchUser']);    
     
+    //homework
+    Route::get('admin/homework/homework',[HomeworkController::class,'homework']);
+    Route::get('admin/homework/homework/add',[HomeworkController::class,'add']);
+    Route::post('admin/ajax_get_subject',[HomeworkController::class,'ajax_get_subject']);
+    Route::post('admin/homework/homework/add',[HomeworkController::class,'insert']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
