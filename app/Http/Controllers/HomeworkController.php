@@ -176,4 +176,12 @@ class HomeworkController extends Controller
         $homework->save();
         return redirect('teacher/homework/homework')->with('success',"Homework Successfully Updated");
     }
+
+    //student side work
+    public function HomeworkStudent()
+    {
+        $data['getRecord'] = HomeworkModel::getRecordStudent(Auth::user()->class_id);
+        $data['header_title']="My Homework";
+        return view('student.homework.list',$data);
+    }
 }
