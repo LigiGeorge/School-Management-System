@@ -13,6 +13,7 @@ class HomeworkController extends Controller
 {
     public function homework()
     {
+        $data['getRecord'] = HomeworkModel::getRecord();
         $data['header_title']="Homework";
         return view('admin.homework.list',$data);
     }
@@ -43,6 +44,47 @@ class HomeworkController extends Controller
         }
         $homework->save();
         return redirect('admin/homework/homework')->with('success',"Homework Successfully Created");
+    }
+    public function edit($id)
+    {
+        $getRecord = HomeworkModel::getSingle($id);
+        $data['getRecord'] = $getRecord;
+        $data['getSubject'] = ClassSubjectModel::MySubject($getRecord->class_id);
+        $data['getClass'] = ClassModel::getClass();
+        $data['header_title']="Edit Homework";
+        return view('admin.homework.edit',$data);
+    }
+    public function update($id,Request $request)
+    {
+        $homework = HomeworkModel::getSingle($id);
+        $homework->class_id = trim($request->class_id);
+        $homework->subject_id = trim($request->subject_id);
+        $homework->homework_date = trim($request->homework_date);
+        $homework->submission_date = trim($request->submission_date);
+        $homework->description = trim($request->description);        
+
+        if(!empty($request->file('document_file')))
+        {
+            if(!empty($homework->getDocument()))
+            {
+                unlink('upload/homework/'.$homework->document_file);
+            }
+            $ext=$request->file('document_file')->getClientOriginalExtension();
+            $file=$request->file('document_file');
+            $randomStr=date('Ymdhis').Str::random(20);
+            $filename=strtolower($randomStr).'.'.$ext;
+            $file->move('upload/homework/',$filename);
+            $homework->document_file=$filename;
+        }
+        $homework->save();
+        return redirect('admin/homework/homework')->with('success',"Homework Successfully Updated");
+    }
+    public function delete($id)
+    {
+        $homework = HomeworkModel::getSingle($id);
+        $homework->is_delete = 1;
+        $homework->save();   
+        return redirect()->back()->with('success',"Homework Successfully Deleted");     
     }
     public function ajax_get_subject(Request $request)
     {

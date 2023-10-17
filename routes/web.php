@@ -168,6 +168,9 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/homework/homework/add',[HomeworkController::class,'add']);
     Route::post('admin/ajax_get_subject',[HomeworkController::class,'ajax_get_subject']);
     Route::post('admin/homework/homework/add',[HomeworkController::class,'insert']);
+    Route::get('admin/homework/homework/edit/{id}',[HomeworkController::class,'edit']);
+    Route::post('admin/homework/homework/edit/{id}',[HomeworkController::class,'update']);
+    Route::get('admin/homework/homework/delete/{id}',[HomeworkController::class,'delete']);
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
