@@ -394,6 +394,23 @@
               </li>                                 
             </ul>
           </li>  
+          <li class="nav-item @if( Request::segment(2)=='homework') menu-is-opening menu-open  @endif">
+            <a href="#" class="nav-link @if( Request::segment(2)=='homework' ) active @endif">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Home Work
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('teacher/homework/homework')}}" class="nav-link @if( Request::segment(3)=='homework') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Home Work</p>
+                </a>
+              </li>                                                            
+            </ul>
+          </li>  
           <li class="nav-item">
             <a href="{{url('teacher/my_notice_board')}}" class="nav-link  @if( Request::segment(2)=='my_notice_board') active @endif ">
               <i class="nav-icon far fa-user"></i>

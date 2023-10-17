@@ -84,6 +84,7 @@
                       <th>Homework Date</th>
                       <th>Submission Date</th>
                       <th>Document</th>
+                      <th>Created By</th>
                       <th>Created Date</th>
                       <th>Action</th>
                     </tr>
@@ -101,6 +102,7 @@
                       <a href="{{ $value->getDocument() }}" download="" class="btn btn-primary">Download</a>
                       @endif
                     </td>
+                    <td>{{ $value->created_by_name }}</td>
                     <td>{{ date('d-m-Y',strtotime($value->created_at)) }}</td>
                     <td>
                         <a href="{{url('admin/homework/edit/'.$value->id)}}" class="btn btn-primary">Edit</a>
