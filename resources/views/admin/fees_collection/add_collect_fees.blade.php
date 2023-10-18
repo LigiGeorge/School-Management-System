@@ -42,7 +42,6 @@
                       <th>Remark</th>
                       <th>Created By</th>
                       <th>Created Date</th>
-                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -56,7 +55,6 @@
                         <td>{{ $value->remark }}</td>
                         <td>{{ $value->created_name }}</td>
                         <td>{{ date('d-m-Y',strtotime($value->class_name)) }}</td>
-                        <td></td>
                     </tr>
                    @empty
                     <tr>
@@ -97,10 +95,13 @@
             <label class="col-form-label">Total Amount : &#8377;{{number_format($getStudent->amount,2)}}</label>            
           </div>
           <div class="form-group">
-            <label class="col-form-label">Paid Amount : </label>            
+            <label class="col-form-label">Paid Amount : &#8377;{{number_format($paid_amount,2)}}</label>            
           </div>
           <div class="form-group">
-            <label class="col-form-label">Remaining Amount : </label>            
+            @php
+              $RemainingAmount = $getStudent->amount - $paid_amount;
+            @endphp
+            <label class="col-form-label">Remaining Amount : &#8377;{{number_format($RemainingAmount,2)}}</label>            
           </div>
           <div class="form-group">
             <label class="col-form-label">Amount <span style="color:red;">*</span></label>
