@@ -220,6 +220,7 @@ Route::group(['middleware'=>'student'],function(){
     Route::get('student/my_homework',[HomeworkController::class,'HomeworkStudent']);
     Route::get('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomework']);
     Route::post('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomeworkInsert']);
+    Route::get('student/my_submited_homework',[HomeworkController::class,'HomeworkSubmitedStudent']);
 });
 Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/dashboard',[DashboardController::class,'dashboard']);
