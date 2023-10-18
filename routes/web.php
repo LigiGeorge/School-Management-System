@@ -173,6 +173,9 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/homework/homework/delete/{id}',[HomeworkController::class,'delete']);
     Route::get('admin/homework/homework/submitted/{id}',[HomeworkController::class,'submitted']);    
 
+    //homework report
+    Route::get('admin/homework/homework_report',[HomeworkController::class,'homework_report']);
+
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
     Route::get('admin/account',[UserController::class,'MyAccount']); 

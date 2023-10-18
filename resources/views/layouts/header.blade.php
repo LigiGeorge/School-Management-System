@@ -303,6 +303,12 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home Work</p>
                 </a>
+              </li>  
+              <li class="nav-item">
+                <a href="{{url('admin/homework/homework_report')}}" class="nav-link @if( Request::segment(3)=='homework_report') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Home Work Report</p>
+                </a>
               </li>                                                            
             </ul>
           </li>         
