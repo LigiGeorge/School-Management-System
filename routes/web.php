@@ -18,6 +18,7 @@ use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CommunicateController;
 use App\Http\Controllers\HomeworkController;
+use App\Http\Controllers\FeesCollectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -176,6 +177,9 @@ Route::group(['middleware'=>'admin'],function(){
     //homework report
     Route::get('admin/homework/homework_report',[HomeworkController::class,'homework_report']);
 
+    //fees collection
+    Route::get('admin/fees_collection/collect_fees',[FeesCollectionController::class,'collect_fees']);
+    
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
     Route::get('admin/account',[UserController::class,'MyAccount']); 
