@@ -240,4 +240,6 @@ Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/my_student/attendance/{student_id}',[AttendanceController::class,'MyAttendanceParent']);
     Route::get('parent/my_notice_board',[CommunicateController::class,'MyNoticeBoardParent']);
     Route::get('parent/my_student_notice_board',[CommunicateController::class,'MyStudentNoticeBoardParent']);
+    Route::get('parent/my_student/homework/{id}',[HomeworkController::class,'HomeworkStudentParent']);
+    Route::get('parent/my_student/submitted_homework/{id}',[HomeworkController::class,'SubmittedHomeworkStudentParent']);
 });
