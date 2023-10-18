@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1>My Submited Homework</h1>
+            <h1>My Submitted Homework</h1>
           </div>           
         </div>
       </div>
@@ -16,7 +16,7 @@
         <div class="col-md-12">                    
         <div class="card">  
             <div class="card-header">
-                <h3 class="card-title">Search My Submited Homework</h3>
+                <h3 class="card-title">Search My Submitted Homework</h3>
               </div>          
               <form method="get" action="">
               {{csrf_field()}}
@@ -47,17 +47,17 @@
                     <input type="date" class="form-control" name="submission_date_to" value="{{Request::get('submission_date_to')}}">                    
                   </div>
                   <div class="form-group col-md-2">
-                    <label>Submited Created Date From</label>
+                    <label>Submitted Created Date From</label>
                     <input type="date" class="form-control" name="created_date_from" value="{{Request::get('created_date_from')}}">                    
                   </div>
                   <div class="form-group col-md-2">
-                    <label>Submited Created Date To</label>
+                    <label>Submitted Created Date To</label>
                     <input type="date" class="form-control" name="created_date_to" value="{{Request::get('created_date_to')}}">                    
                   </div>
 
                   <div class="form-group col-md-2">
                     <button class="btn btn-primary" type="submit" style="margin-top:30px;">Search</button>
-                    <a href="{{url('student/my_submited_homework')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <a href="{{url('student/my_submitted_homework')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
                   </div>
 
                   </div>                                  
@@ -83,9 +83,9 @@
                       <th>Document</th>
                       <th>Description</th>
                       <th>Created Date</th>
-                      <th>Submited Document</th>
-                      <th>Submited Description</th>
-                      <th>Submited Created Date</th>
+                      <th>Submitted Document</th>
+                      <th>Submitted Description</th>
+                      <th>Submitted Created Date</th>
                     </tr>
                   </thead>
                   <tbody>

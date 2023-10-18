@@ -171,6 +171,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/homework/homework/edit/{id}',[HomeworkController::class,'edit']);
     Route::post('admin/homework/homework/edit/{id}',[HomeworkController::class,'update']);
     Route::get('admin/homework/homework/delete/{id}',[HomeworkController::class,'delete']);
+    Route::get('admin/homework/homework/submitted/{id}',[HomeworkController::class,'submitted']);    
 
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
@@ -203,6 +204,7 @@ Route::group(['middleware'=>'teacher'],function(){
     Route::get('teacher/homework/homework/edit/{id}',[HomeworkController::class,'editTeacher']);
     Route::post('teacher/homework/homework/edit/{id}',[HomeworkController::class,'updateTeacher']);
     Route::get('teacher/homework/homework/delete/{id}',[HomeworkController::class,'delete']);
+    Route::get('teacher/homework/homework/submitted/{id}',[HomeworkController::class,'submittedTeacher']);    
 });
 Route::group(['middleware'=>'student'],function(){
     Route::get('student/dashboard',[DashboardController::class,'dashboard']);
@@ -220,7 +222,7 @@ Route::group(['middleware'=>'student'],function(){
     Route::get('student/my_homework',[HomeworkController::class,'HomeworkStudent']);
     Route::get('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomework']);
     Route::post('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomeworkInsert']);
-    Route::get('student/my_submited_homework',[HomeworkController::class,'HomeworkSubmitedStudent']);
+    Route::get('student/my_submitted_homework',[HomeworkController::class,'HomeworkSubmittedStudent']);
 });
 Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/dashboard',[DashboardController::class,'dashboard']);

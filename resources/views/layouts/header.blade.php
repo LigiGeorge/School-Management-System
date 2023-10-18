@@ -509,10 +509,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('student/my_submited_homework')}}" class="nav-link  @if( Request::segment(2)=='my_submited_homework') active @endif ">
+            <a href="{{url('student/my_submitted_homework')}}" class="nav-link  @if( Request::segment(2)=='my_submitted_homework') active @endif ">
               <i class="nav-icon far fa-user"></i>
               <p>
-               My Submited Homework
+               Submitted Homework
               </p>
             </a>
           </li>
