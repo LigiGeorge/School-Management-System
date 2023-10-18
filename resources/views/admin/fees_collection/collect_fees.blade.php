@@ -87,7 +87,7 @@
                             <td>&#8377;0.00</td>
                             <td>{{ date('d-m-Y',strtotime($value->created_at)) }}</td>
                             <td>
-                                <a href="" class="btn btn-success">Collect Fees</a>
+                                <a href="{{ url('admin/fees_collection/collect_fees/add_fees/'.$value->id) }}" class="btn btn-success">Collect Fees</a>
                             </td>
                         </tr>
                     @empty

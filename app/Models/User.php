@@ -47,6 +47,13 @@ class User extends Authenticatable
     {
         return User::find($id);
     }
+    static public function getSingleClass($id)
+    {
+        return User::select('users.*','class.amount','class.name as class_name')
+                    ->join('class','class.id','=','users.class_id')
+                    ->where('users.id','=',$id)
+                    ->first();
+    }
     static public function SearchUser($search)
     {
         $return  = self::select('users.*')

@@ -179,6 +179,8 @@ Route::group(['middleware'=>'admin'],function(){
 
     //fees collection
     Route::get('admin/fees_collection/collect_fees',[FeesCollectionController::class,'collect_fees']);
+    Route::get('admin/fees_collection/collect_fees/add_fees/{student_id}',[FeesCollectionController::class,'collect_fees_add']);
+    Route::post('admin/fees_collection/collect_fees/add_fees/{student_id}',[FeesCollectionController::class,'collect_fees_insert']);
     
     Route::get('admin/change_password',[UserController::class,'change_password']);
     Route::post('admin/change_password',[UserController::class,'update_change_password']);
