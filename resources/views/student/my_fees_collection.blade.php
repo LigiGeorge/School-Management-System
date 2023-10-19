@@ -112,7 +112,7 @@
             <select name="payment_type" class="form-control" required>
                 <option value="">Select</option>
                 <option value="Paypal">Paypal</option>
-                <option value="GooglePay">GooglePay</option>
+                <option value="Stripe">Stripe</option>
             </select>
           </div>
           <div class="form-group">

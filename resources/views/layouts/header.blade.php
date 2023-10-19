@@ -476,7 +476,7 @@
             </a>
           </li>  
           <li class="nav-item">
-            <a href="{{url('student/fees_colection')}}" class="nav-link  @if( Request::segment(2)=='fees_colection') active @endif ">
+            <a href="{{url('student/fees_collection')}}" class="nav-link  @if( Request::segment(2)=='fees_colection') active @endif ">
               <i class="nav-icon far fa-user"></i>
               <p>
               Fees Collection

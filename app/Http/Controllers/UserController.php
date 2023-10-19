@@ -21,6 +21,8 @@ class UserController extends Controller
     {
         $settings = SettingsModel::getSingle();
         $settings->paypal_email = trim($request->paypal_email);
+        $settings->stripe_key = trim($request->stripe_key);
+        $settings->stripe_secret = trim($request->stripe_secret);
         $settings->save();
         return redirect()->back()->with('success',"Settings Successfully Updated");
     }

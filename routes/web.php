@@ -238,6 +238,8 @@ Route::group(['middleware'=>'student'],function(){
     Route::post('student/fees_collection',[FeesCollectionController::class,'CollectFeesStudentPayment']);
     Route::get('student/paypal/payment-error',[FeesCollectionController::class,'PaymentError']);
     Route::get('student/paypal/payment-success',[FeesCollectionController::class,'PaymentSuccess']);
+    Route::get('student/stripe/payment-error',[FeesCollectionController::class,'PaymentError']);
+    Route::get('student/stripe/payment-success',[FeesCollectionController::class,'PaymentSuccessStripe']);
 });
 Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/dashboard',[DashboardController::class,'dashboard']);
