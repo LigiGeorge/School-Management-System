@@ -338,6 +338,14 @@
             </a>
           </li>  
           <li class="nav-item">
+            <a href="{{url('admin/settings')}}" class="nav-link  @if( Request::segment(2)=='settings') active @endif ">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+               Settings
+              </p>
+            </a>
+          </li>  
+          <li class="nav-item">
             <a href="{{url('admin/change_password')}}" class="nav-link  @if( Request::segment(2)=='change_password') active @endif ">
               <i class="nav-icon far fa-user"></i>
               <p>
@@ -466,7 +474,15 @@
                 Dashboard                
               </p>
             </a>
-          </li>   
+          </li>  
+          <li class="nav-item">
+            <a href="{{url('student/fees_colection')}}" class="nav-link  @if( Request::segment(2)=='fees_colection') active @endif ">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+              Fees Collection
+              </p>
+            </a>
+          </li> 
           <li class="nav-item">
             <a href="{{url('student/my_calender')}}" class="nav-link  @if( Request::segment(2)=='my_calender') active @endif ">
               <i class="nav-icon far fa-user"></i>
