@@ -7,6 +7,7 @@ use Auth;
 use App\Models\ClassModel;
 use App\Models\User;
 use App\Models\StudentAddFeesModel;
+use App\Models\SettingsModel;
 
 class FeesCollectionController extends Controller
 {
@@ -96,16 +97,32 @@ class FeesCollectionController extends Controller
                 $payment->remark = $request->remark;
                 $payment->created_by = Auth::user()->id;
                 $payment->save();
-                
+
+                $getSetting = SettingsModel::getSingle();
+
                 if($request->payment_type == 'Paypal')
                 {
+                    $query = array();
+                    $query['business'] = $getSetting->paypal_email;
+                    $query['cmd'] = '_xclick';
+                    $query['item_name'] = "Student Fees";
+                    $query['no_shipping'] = '1';
+                    $query['item_number'] = $payment->id;
+                    $query['amount'] = $request->amount;
+                    $query['currency_code'] = 'USD';
+                    $query['cancel_return'] = url('student/paypal/payment-error');
+                    $query['return'] = url('student/paypal/payment-success');
 
+                    $query_string = http_build_query($query);
+                    // header('Location: https://www.paypal.com/cgi-bin/webscr?'.$query_string);
+                    header('Location: https://www.sandbox.paypal.com/cgi-bin/webscr?'.$query_string);
+                    exit();
                 }
                 else if($request->payment_type == 'GooglePay')
                 {
                     
                 }
-                return redirect()->back()->with('success','Fees Successfully Added');
+                // return redirect()->back()->with('success','Fees Successfully Added');
             }
             else
             {
@@ -116,5 +133,31 @@ class FeesCollectionController extends Controller
         {
             return redirect()->back()->with('error','Your Amount Is Not Valid');
         }        
+    }
+    public function PaymentError()
+    {
+        return redirect('student/fees_collection')->with('error','Error: Please Try Again Later');
+    }
+    public function PaymentSuccess(Request $request)
+    {
+        if(!empty($request->item_number) && !empty($request->st) && $request->st == 'Completed')
+        {
+            $fees = StudentAddFeesModel::getSingle($request->item_number);
+            if(!empty($fees))
+            {
+                $fess->is_payment = 1;
+                $fess->payment_data = json_encode($request->all());
+                $fees->save();
+                return redirect('student/fees_collection')->with('success','Your Payment Successfully');  
+            }
+            else
+            {
+                return redirect('student/fees_collection')->with('error','Error: Please Try Again Later');  
+            }
+        }
+        else
+        {
+            return redirect('student/fees_collection')->with('error','Error: Please Try Again Later'); 
+        }
     }
 }

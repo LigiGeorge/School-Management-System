@@ -234,8 +234,10 @@ Route::group(['middleware'=>'student'],function(){
     Route::get('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomework']);
     Route::post('student/my_homework/submit_homework/{id}',[HomeworkController::class,'SubmitHomeworkInsert']);
     Route::get('student/my_submitted_homework',[HomeworkController::class,'HomeworkSubmittedStudent']);
-    Route::get('student/fees_colection',[FeesCollectionController::class,'CollectFeesStudent']);
-    Route::post('student/fees_colection',[FeesCollectionController::class,'CollectFeesStudentPayment']);
+    Route::get('student/fees_collection',[FeesCollectionController::class,'CollectFeesStudent']);
+    Route::post('student/fees_collection',[FeesCollectionController::class,'CollectFeesStudentPayment']);
+    Route::get('student/paypal/payment-error',[FeesCollectionController::class,'PaymentError']);
+    Route::get('student/paypal/payment-success',[FeesCollectionController::class,'PaymentSuccess']);
 });
 Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/dashboard',[DashboardController::class,'dashboard']);
