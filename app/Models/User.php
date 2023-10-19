@@ -389,4 +389,11 @@ class User extends Authenticatable
     {
       return StudentAddFeesModel::getPaidAmount($student_id,$class_id);
     }
+    static public function getTotalUser($user_type)
+    {
+      return self::select('users.id')
+                  ->where('user_type','=',$user_type)
+                  ->where('is_delete','=')
+                  ->count();
+    }
 }

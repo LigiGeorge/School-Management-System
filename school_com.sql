@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 01:13 PM
+-- Generation Time: Oct 19, 2023 at 12:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -467,6 +467,28 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `paypal_email` varchar(255) DEFAULT NULL,
+  `stripe_key` varchar(500) DEFAULT NULL,
+  `stripe_secret` varchar(500) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `paypal_email`, `stripe_key`, `stripe_secret`, `created_at`, `updated_at`) VALUES
+(1, 'testing@gmail.com', 'pk_test_51O2phYSIsPogVZO1LQOH3A3EJjx1ucD3sEfT427mwjdQD6eSCz2eTaywjuolkEVVueFQ38NgJL24vjYpLUUxsHc400CWdkz1kL', 'sk_test_51O2phYSIsPogVZO1tBJRJyfZ5nxpNHxtTO6BCHYzGTqx0uzTv8Thl1sgYweBtaHsagdsju4CtOVU2JKdblcTHiZc00DVuPgPmc', NULL, '2023-10-19 06:32:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_add_fees`
 --
 
@@ -479,6 +501,9 @@ CREATE TABLE `student_add_fees` (
   `remaining_amount` int(11) DEFAULT 0,
   `payment_type` varchar(255) DEFAULT NULL,
   `remark` text DEFAULT NULL,
+  `is_payment` tinyint(4) NOT NULL DEFAULT 0,
+  `stripe_session_id` varchar(255) DEFAULT NULL,
+  `payment_data` text DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -488,13 +513,43 @@ CREATE TABLE `student_add_fees` (
 -- Dumping data for table `student_add_fees`
 --
 
-INSERT INTO `student_add_fees` (`id`, `student_id`, `class_id`, `total_amount`, `paid_amount`, `remaining_amount`, `payment_type`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
-(4, 5, 3, 1000, 200, 800, 'Cash', 'vsvs', 1, '2023-10-18 10:50:50', '2023-10-18 10:50:50'),
-(5, 5, 3, 800, 100, 700, 'Cheque', 'dds', 1, '2023-10-18 10:51:06', '2023-10-18 10:51:06'),
-(6, 5, 3, 700, 250, 450, 'Cash', 'sdcd', 1, '2023-10-18 10:51:59', '2023-10-18 10:51:59'),
-(7, 10, 3, 1000, 1000, 0, 'Cheque', 'cdwd', 1, '2023-10-18 10:55:53', '2023-10-18 10:55:53'),
-(8, 15, 4, 80000, 50, 79950, 'Cash', 'csdcdf', 1, '2023-10-18 10:56:15', '2023-10-18 10:56:15'),
-(9, 15, 4, 79950, 1050, 78900, 'Cheque', 'cdfggfhy hgjh', 1, '2023-10-18 11:05:49', '2023-10-18 11:05:49');
+INSERT INTO `student_add_fees` (`id`, `student_id`, `class_id`, `total_amount`, `paid_amount`, `remaining_amount`, `payment_type`, `remark`, `is_payment`, `stripe_session_id`, `payment_data`, `created_by`, `created_at`, `updated_at`) VALUES
+(4, 5, 3, 1000, 200, 800, 'Cash', 'vsvs', 1, NULL, NULL, 1, '2023-10-19 10:50:50', '2023-10-19 10:50:50'),
+(5, 5, 3, 800, 100, 700, 'Cheque', 'dds', 1, NULL, NULL, 1, '2023-10-18 10:51:06', '2023-10-18 10:51:06'),
+(6, 5, 3, 700, 250, 450, 'Cash', 'sdcd', 1, NULL, NULL, 1, '2023-10-18 10:51:59', '2023-10-18 10:51:59'),
+(8, 15, 4, 80000, 50, 79950, 'Cash', 'csdcdf', 1, NULL, NULL, 1, '2023-10-18 10:56:15', '2023-10-18 10:56:15'),
+(9, 15, 4, 79950, 1050, 78900, 'Cheque', 'cdfggfhy hgjh', 1, NULL, NULL, 1, '2023-10-18 11:05:49', '2023-10-18 11:05:49'),
+(13, 10, 3, 1000, 100, 900, 'Paypal', NULL, 1, NULL, NULL, 10, '2023-10-18 17:13:22', '2023-10-18 17:13:22'),
+(22, 10, 3, 900, 100, 800, 'Paypal', NULL, 0, NULL, NULL, 10, '2023-10-19 05:09:14', '2023-10-19 05:09:14'),
+(23, 10, 3, 900, 100, 800, 'Paypal', NULL, 0, NULL, NULL, 10, '2023-10-19 05:18:34', '2023-10-19 05:18:34'),
+(24, 10, 3, 900, 1, 899, 'Paypal', NULL, 0, NULL, NULL, 10, '2023-10-19 05:28:17', '2023-10-19 05:28:17'),
+(25, 10, 3, 900, 100, 800, 'Paypal', NULL, 0, NULL, NULL, 10, '2023-10-19 05:29:32', '2023-10-19 05:29:32'),
+(26, 10, 3, 900, 100, 800, 'Paypal', NULL, 0, NULL, NULL, 10, '2023-10-19 05:30:35', '2023-10-19 05:30:35'),
+(27, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:21:46', '2023-10-19 06:21:46'),
+(28, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:32:25', '2023-10-19 06:32:25'),
+(29, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:36:07', '2023-10-19 06:36:07'),
+(30, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:38:06', '2023-10-19 06:38:06'),
+(31, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:38:39', '2023-10-19 06:38:39'),
+(32, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:39:27', '2023-10-19 06:39:27'),
+(33, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a1YBApfH8F4XcVn8Jtxpf89OdBTMfXCUusLxQ98ku6uBr8gM6BU2A6pIxg', NULL, 10, '2023-10-19 06:41:49', '2023-10-19 06:41:50'),
+(34, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a14vr2RJDMQzxQtaI45DJSeSrOHrwPCXzWeB1Du6M1Kqxikz0qdquX8maS', NULL, 10, '2023-10-19 06:50:04', '2023-10-19 06:50:05'),
+(35, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a1f85EMbvN1aiRZjAbdPqcAHs422rcMokfGAhopk5ESKTZSybbga3Kcxeu', NULL, 10, '2023-10-19 06:50:47', '2023-10-19 06:50:48'),
+(36, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a1mVVJzuT6aNcUcgdqKoYfQDX6zTOLYLrIDF1i3DTpJaQ0l4dGmRHz9Imo', NULL, 10, '2023-10-19 06:52:01', '2023-10-19 06:52:02'),
+(37, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, NULL, NULL, 10, '2023-10-19 06:53:57', '2023-10-19 06:53:57'),
+(38, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a15BgXU6pX7dgYeNxVIbkwHvqOYo8rqGZqMeFLMtaCVBnyBqVAVnkzWmAq', NULL, 10, '2023-10-19 06:54:25', '2023-10-19 06:54:26'),
+(39, 10, 3, 900, 100, 800, 'Stripe', NULL, 0, 'cs_test_a1ysBnuWuk03KhchIqQcN0TzEDhEy16z820RwV1TG1qf8sa0spouusCXwC', NULL, 10, '2023-10-19 06:57:22', '2023-10-19 06:57:23'),
+(40, 10, 3, 900, 100, 800, 'Stripe', NULL, 1, 'cs_test_a1AuxWTFcelMyEZHaJhUMJIMF5LWeZPeBKM3YjRRGxNTTGDjV9vHN0qhKm', '{\"id\":\"cs_test_a1AuxWTFcelMyEZHaJhUMJIMF5LWeZPeBKM3YjRRGxNTTGDjV9vHN0qhKm\",\"object\":\"checkout.session\",\"after_expiration\":null,\"allow_promotion_codes\":null,\"amount_subtotal\":10000,\"amount_total\":10000,\"automatic_tax\":{\"enabled\":false,\"status\":null},\"billing_address_collection\":null,\"cancel_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-error\",\"client_reference_id\":null,\"client_secret\":null,\"consent\":null,\"consent_collection\":null,\"created\":1697698895,\"currency\":\"inr\",\"currency_conversion\":null,\"custom_fields\":[],\"custom_text\":{\"shipping_address\":null,\"submit\":null,\"terms_of_service_acceptance\":null},\"customer\":null,\"customer_creation\":\"if_required\",\"customer_details\":{\"address\":{\"city\":null,\"country\":\"IN\",\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":\"abiya123@gmail.com\",\"name\":\"Abiya\",\"phone\":null,\"tax_exempt\":\"none\",\"tax_ids\":[]},\"customer_email\":\"abiya123@gmail.com\",\"expires_at\":1697785295,\"invoice\":null,\"invoice_creation\":{\"enabled\":false,\"invoice_data\":{\"account_tax_ids\":null,\"custom_fields\":null,\"description\":null,\"footer\":null,\"metadata\":[],\"rendering_options\":null}},\"livemode\":false,\"locale\":null,\"metadata\":[],\"mode\":\"payment\",\"payment_intent\":\"pi_3O2qEvSIsPogVZO11qmgUfAt\",\"payment_link\":null,\"payment_method_collection\":\"if_required\",\"payment_method_configuration_details\":null,\"payment_method_options\":[],\"payment_method_types\":[\"card\"],\"payment_status\":\"paid\",\"phone_number_collection\":{\"enabled\":false},\"recovered_from\":null,\"setup_intent\":null,\"shipping_address_collection\":null,\"shipping_cost\":null,\"shipping_details\":null,\"shipping_options\":[],\"status\":\"complete\",\"submit_type\":null,\"subscription\":null,\"success_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-success\",\"total_details\":{\"amount_discount\":0,\"amount_shipping\":0,\"amount_tax\":0},\"ui_mode\":\"hosted\",\"url\":null}', 10, '2023-10-19 07:01:34', '2023-10-19 08:21:19'),
+(41, 10, 3, 800, 300, 500, 'Stripe', 'Using Stripe', 1, 'cs_test_a1ggk7EO6XS9MUL8zNpNuYmQVLPQpdQjBih4wGmuEFyrPw4Uq37Og47laG', '{\"id\":\"cs_test_a1ggk7EO6XS9MUL8zNpNuYmQVLPQpdQjBih4wGmuEFyrPw4Uq37Og47laG\",\"object\":\"checkout.session\",\"after_expiration\":null,\"allow_promotion_codes\":null,\"amount_subtotal\":30000,\"amount_total\":30000,\"automatic_tax\":{\"enabled\":false,\"status\":null},\"billing_address_collection\":null,\"cancel_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-error\",\"client_reference_id\":null,\"client_secret\":null,\"consent\":null,\"consent_collection\":null,\"created\":1697704084,\"currency\":\"inr\",\"currency_conversion\":null,\"custom_fields\":[],\"custom_text\":{\"shipping_address\":null,\"submit\":null,\"terms_of_service_acceptance\":null},\"customer\":null,\"customer_creation\":\"if_required\",\"customer_details\":{\"address\":{\"city\":null,\"country\":\"IN\",\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":\"abiya123@gmail.com\",\"name\":\"Abiya\",\"phone\":null,\"tax_exempt\":\"none\",\"tax_ids\":[]},\"customer_email\":\"abiya123@gmail.com\",\"expires_at\":1697790484,\"invoice\":null,\"invoice_creation\":{\"enabled\":false,\"invoice_data\":{\"account_tax_ids\":null,\"custom_fields\":null,\"description\":null,\"footer\":null,\"metadata\":[],\"rendering_options\":null}},\"livemode\":false,\"locale\":null,\"metadata\":[],\"mode\":\"payment\",\"payment_intent\":\"pi_3O2ranSIsPogVZO11NZOUaVS\",\"payment_link\":null,\"payment_method_collection\":\"if_required\",\"payment_method_configuration_details\":null,\"payment_method_options\":[],\"payment_method_types\":[\"card\"],\"payment_status\":\"paid\",\"phone_number_collection\":{\"enabled\":false},\"recovered_from\":null,\"setup_intent\":null,\"shipping_address_collection\":null,\"shipping_cost\":null,\"shipping_details\":null,\"shipping_options\":[],\"status\":\"complete\",\"submit_type\":null,\"subscription\":null,\"success_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-success\",\"total_details\":{\"amount_discount\":0,\"amount_shipping\":0,\"amount_tax\":0},\"ui_mode\":\"hosted\",\"url\":null}', 10, '2023-10-19 08:28:03', '2023-10-19 08:28:40'),
+(42, 10, 3, 500, 100, 400, 'Paypal', 'testing parent paypal', 0, NULL, NULL, 11, '2023-10-19 09:03:23', '2023-10-19 09:03:23'),
+(43, 10, 3, 500, 100, 400, 'Paypal', NULL, 0, NULL, NULL, 11, '2023-10-19 09:04:37', '2023-10-19 09:04:37'),
+(44, 10, 3, 500, 100, 400, 'Paypal', NULL, 0, NULL, NULL, 11, '2023-10-19 09:08:11', '2023-10-19 09:08:11'),
+(45, 10, 3, 500, 100, 400, 'Paypal', NULL, 0, NULL, NULL, 11, '2023-10-19 09:18:20', '2023-10-19 09:18:20'),
+(46, 10, 3, 500, 100, 400, 'Paypal', NULL, 0, NULL, NULL, 11, '2023-10-19 09:25:32', '2023-10-19 09:25:32'),
+(47, 10, 3, 500, 100, 400, 'Stripe', 'daewd', 0, 'cs_test_a1AEHf3O1l9bXgfWsbrDHeB4dRnHfdey2RqHnN90Hdc9VRDJowAO86MHVI', NULL, 11, '2023-10-19 09:36:11', '2023-10-19 09:36:12'),
+(48, 10, 3, 500, 100, 400, 'Stripe', NULL, 0, 'cs_test_a173V5YyKGBQhrjuz60Sq46JjxmXl68RBCq371MPsuk9nbwrGeJBb3dJ1c', NULL, 11, '2023-10-19 09:38:25', '2023-10-19 09:38:26'),
+(49, 10, 3, 500, 100, 400, 'Stripe', NULL, 0, 'cs_test_a1YGTT6pHpArgCs99cdpHCSwyvXxaBmmUQ7JyMtYezaLVAw0u6lRVyQzBY', NULL, 11, '2023-10-19 09:39:33', '2023-10-19 09:39:34'),
+(50, 10, 3, 500, 100, 400, 'Stripe', NULL, 1, 'cs_test_a1INEXIhJ53mZ8W4SYhLdHHtmj2DJgr7WoZSQhY8QdRTbnpXtuDSafGaQQ', '{\"id\":\"cs_test_a1INEXIhJ53mZ8W4SYhLdHHtmj2DJgr7WoZSQhY8QdRTbnpXtuDSafGaQQ\",\"object\":\"checkout.session\",\"after_expiration\":null,\"allow_promotion_codes\":null,\"amount_subtotal\":10000,\"amount_total\":10000,\"automatic_tax\":{\"enabled\":false,\"status\":null},\"billing_address_collection\":null,\"cancel_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-error\",\"client_reference_id\":null,\"client_secret\":null,\"consent\":null,\"consent_collection\":null,\"created\":1697708495,\"currency\":\"inr\",\"currency_conversion\":null,\"custom_fields\":[],\"custom_text\":{\"shipping_address\":null,\"submit\":null,\"terms_of_service_acceptance\":null},\"customer\":null,\"customer_creation\":\"if_required\",\"customer_details\":{\"address\":{\"city\":null,\"country\":\"IN\",\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":\"abiya123@gmail.com\",\"name\":\"Abiya\",\"phone\":null,\"tax_exempt\":\"none\",\"tax_ids\":[]},\"customer_email\":\"abiya123@gmail.com\",\"expires_at\":1697794895,\"invoice\":null,\"invoice_creation\":{\"enabled\":false,\"invoice_data\":{\"account_tax_ids\":null,\"custom_fields\":null,\"description\":null,\"footer\":null,\"metadata\":[],\"rendering_options\":null}},\"livemode\":false,\"locale\":null,\"metadata\":[],\"mode\":\"payment\",\"payment_intent\":\"pi_3O2sjgSIsPogVZO118yFfola\",\"payment_link\":null,\"payment_method_collection\":\"if_required\",\"payment_method_configuration_details\":null,\"payment_method_options\":[],\"payment_method_types\":[\"card\"],\"payment_status\":\"paid\",\"phone_number_collection\":{\"enabled\":false},\"recovered_from\":null,\"setup_intent\":null,\"shipping_address_collection\":null,\"shipping_cost\":null,\"shipping_details\":null,\"shipping_options\":[],\"status\":\"complete\",\"submit_type\":null,\"subscription\":null,\"success_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/student\\/stripe\\/payment-success\",\"total_details\":{\"amount_discount\":0,\"amount_shipping\":0,\"amount_tax\":0},\"ui_mode\":\"hosted\",\"url\":null}', 10, '2023-10-19 09:41:34', '2023-10-19 09:41:55'),
+(51, 10, 3, 400, 100, 300, 'Stripe', 'parent', 1, 'cs_test_a1tLEmd3Ne4GLJJIU3HmcWw2UhTq7Quu7mPRhbLpFo2CxyDTLBwarrxalG', '{\"id\":\"cs_test_a1tLEmd3Ne4GLJJIU3HmcWw2UhTq7Quu7mPRhbLpFo2CxyDTLBwarrxalG\",\"object\":\"checkout.session\",\"after_expiration\":null,\"allow_promotion_codes\":null,\"amount_subtotal\":10000,\"amount_total\":10000,\"automatic_tax\":{\"enabled\":false,\"status\":null},\"billing_address_collection\":null,\"cancel_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/parent\\/stripe\\/payment-error\\/10\",\"client_reference_id\":null,\"client_secret\":null,\"consent\":null,\"consent_collection\":null,\"created\":1697708755,\"currency\":\"inr\",\"currency_conversion\":null,\"custom_fields\":[],\"custom_text\":{\"shipping_address\":null,\"submit\":null,\"terms_of_service_acceptance\":null},\"customer\":null,\"customer_creation\":\"if_required\",\"customer_details\":{\"address\":{\"city\":null,\"country\":\"IN\",\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":\"george@gmail.com\",\"name\":\"Abiya\",\"phone\":null,\"tax_exempt\":\"none\",\"tax_ids\":[]},\"customer_email\":\"george@gmail.com\",\"expires_at\":1697795155,\"invoice\":null,\"invoice_creation\":{\"enabled\":false,\"invoice_data\":{\"account_tax_ids\":null,\"custom_fields\":null,\"description\":null,\"footer\":null,\"metadata\":[],\"rendering_options\":null}},\"livemode\":false,\"locale\":null,\"metadata\":[],\"mode\":\"payment\",\"payment_intent\":\"pi_3O2snsSIsPogVZO10WdVfzE5\",\"payment_link\":null,\"payment_method_collection\":\"if_required\",\"payment_method_configuration_details\":null,\"payment_method_options\":[],\"payment_method_types\":[\"card\"],\"payment_status\":\"paid\",\"phone_number_collection\":{\"enabled\":false},\"recovered_from\":null,\"setup_intent\":null,\"shipping_address_collection\":null,\"shipping_cost\":null,\"shipping_details\":null,\"shipping_options\":[],\"status\":\"complete\",\"submit_type\":null,\"subscription\":null,\"success_url\":\"http:\\/\\/localhost\\/Laravel%20Projects\\/School.com\\/parent\\/stripe\\/payment-success\\/10\",\"total_details\":{\"amount_discount\":0,\"amount_shipping\":0,\"amount_tax\":0},\"ui_mode\":\"hosted\",\"url\":null}', 11, '2023-10-19 09:45:54', '2023-10-19 09:46:15');
 
 -- --------------------------------------------------------
 
@@ -608,7 +663,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `occupation`, `marital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', 'OkVqw7yM0PdVfKOUKR4gL5PgHyIPaNyyqYQfS3tnYtdWaW0eS5c8tIPdDR5N', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-03 00:30:38'),
+(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$Tp1PJem05r5ATuqfgWmozuiOxpuH/Au6CEqykiQMpBcko9ZFuzQG.', '6COP2AuHZmZD531tTr4Bq3EWh9lgrR7r2znFL2jCzlhGe2OEbkjpTs3AJIjR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-03 00:30:38'),
 (3, NULL, 'Teacher', 'Anny', 'teacher@gmail.com', NULL, '$2y$10$uEBlKcFk/EkG7JchH8M71O1ks9QYoRBQO6aIoNrMJ3Zuw2sBNxfMq', 'cnUoDVqZsjRmMvqOuT7rhD4xRpAf3YzJE619CBTm1Iq5dEIl0TktCi8ZuuA8', NULL, NULL, NULL, 'Female', '2023-09-27', NULL, NULL, '7845120369', '2023-10-01', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-09-26 07:21:02', '2023-10-02 12:04:15'),
 (4, NULL, 'Parent', 'Dolly', 'parent@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'rb2CmLg3xeyrzH8OKxdf3uioiUx0GHyTGe7came2fC7ism0NARp0siv1sUWX', NULL, NULL, NULL, 'Female', NULL, NULL, NULL, '8281857938', NULL, '20231002065750jrltvosdpjoioqz2bt6d.jfif', NULL, NULL, NULL, '', NULL, 'Mandaram', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-09-26 07:21:02', '2023-10-02 01:29:54'),
 (5, 11, 'Evan', 'Libu', 'evan@gmail.com', NULL, '$2y$10$caWtWw..30RrQs91CV23EOTaGWdPB.yHu3wEb/zR.UyJHpDP1vNse', 'f2TToXkr2sSLopeNig7qjSyhxOFfWTKNuyBs6XkWcREMWbny13IG6sZZsrKh', '2132', '76', 3, 'Male', '2023-08-05', 'No caste', 'no religion', '7356217922', '2023-09-28', NULL, 'A', '100', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-09-26 07:21:02', '2023-10-11 03:45:17'),
@@ -616,8 +671,8 @@ INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_ver
 (7, NULL, 'Abiya Libu', NULL, 'abiya@gmail.com', NULL, '$2y$10$WHOZKim/1y2DAuqe/MuZ/eJiNSPAuEY5lhvNYSWIndr0bA/xRh.3.', 'PbhDUPIxVDwDee4w4lvQtmgFxboOKDopnAFqxIdeFCDyTZPYJkolmful6RYM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 01:24:37', '2023-09-27 03:21:22'),
 (8, NULL, 'admin', NULL, 'admin123@gmail.com', NULL, '$2y$10$rK5IfZRWzaJ3g/mU2emakue3BsV9QKWORDEp0Q6z9.zqtCCS9vHB2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 03:45:37', '2023-09-27 05:02:20'),
 (9, 4, 'John Doe', 'd', 'john@gmail.com', NULL, '$2y$10$0f42oAOdJRipUE5V2mZabug9MxLMovFQPwD.WQfCgCXQza0kuj1Ki', 'l7gTWkK957MyqWyPIwbEhpseOnr3a2Ix6WhYAISQHjNxP4j616iBc7dfQLTH', '342', '155', 2, 'Male', '2023-09-28', 'fds', 'dsfew', '34657554', '2023-10-01', '20231001054907dugey0ebd04junphkrbx.jpg', 'f', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 12:19:07', '2023-10-18 00:51:55'),
-(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', 'psi0hLymeo7P3jOG3m5qUiJ8aisGaFwZpKJpyXtqIUnyuaL0DXoz40nLiLvU', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231002042118rxgqgyad63uzyzgrejrm.png', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-02 23:52:09'),
-(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', 'Mc3z5Uo0CdKZdTOm85CVrTHeznTMp7S6GKuN28b8qsXZRCFHmsEtyU2D6tJo', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-06 03:40:42'),
+(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', 'rfKGxa0mdE51goO4uBFvGkAbCQYCHl7j7Pm6GxmRppZeJSTgXP1UmNIXzKth', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231002042118rxgqgyad63uzyzgrejrm.png', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-02 23:52:09'),
+(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', 'kkvO6DsjsMNV6bVGnnc4bYiSksTUrGjUG0CVJ7VlXCpUYY9FNM3Um8JqWlcZ', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-06 03:40:42'),
 (12, NULL, 'Beena', 'A Philipose', 'beena123@gmail.com', NULL, '$2y$10$yF/oAcHFS/rEczjEfrSBpeVdd5iM0JLjgectMwh590Y2JwILAd8su', 'w4Inecwou23l5ii5vlgYS9fOY0JddtKhdDgNwky8ZmavQB83znjDFZRjpA8O', NULL, NULL, NULL, 'Female', '2023-06-03', NULL, NULL, '9863251478', '2023-10-03', '20231002050942zv1bfylfuvhuxyahl8ug.jpg', NULL, NULL, NULL, NULL, 'Married', 'Swargam', 'Tvm', 'MTech', '2 Years', 'nothing', 2, 0, 0, '2023-10-02 11:39:42', '2023-10-02 23:19:30'),
 (13, NULL, 'Aneesha', 'A', 'aneesha@gmail.com', NULL, '$2y$10$bmGusTThrDlojvQUiW5a2uNj9ZFHth6uSf.dcMVXc7HpH/xZuOwbu', NULL, NULL, NULL, NULL, 'Female', '2023-06-02', NULL, NULL, '9863252586', '2023-03-18', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:22:29', '2023-10-03 05:22:29'),
 (14, NULL, 'Nivin', 'VIncent', 'nivin@gmail.com', NULL, '$2y$10$DuumRBayjBm2Zy27Xro7UuBrQ9RNLrAJcX1gsAjfwzX5RRYYdTMUS', '9MWezlXUDBAJ2JJQaovIeovj7IFpR1k15uw4BmYMEYGaXuOalHoOoXnWQtyd', NULL, NULL, NULL, 'Male', '2023-06-30', NULL, NULL, '', '2023-05-19', NULL, NULL, NULL, NULL, NULL, '', 'kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:25:34', '2023-10-03 05:25:34'),
@@ -754,6 +809,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student_add_fees`
 --
 ALTER TABLE `student_add_fees`
@@ -879,10 +940,16 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `student_add_fees`
 --
 ALTER TABLE `student_add_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `student_attendance`
