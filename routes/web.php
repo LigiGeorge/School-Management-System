@@ -259,4 +259,10 @@ Route::group(['middleware'=>'parent'],function(){
     Route::get('parent/my_student_notice_board',[CommunicateController::class,'MyStudentNoticeBoardParent']);
     Route::get('parent/my_student/homework/{id}',[HomeworkController::class,'HomeworkStudentParent']);
     Route::get('parent/my_student/submitted_homework/{id}',[HomeworkController::class,'SubmittedHomeworkStudentParent']);
+    Route::get('parent/my_student/fees_collection/{student_id}',[FeesCollectionController::class,'CollectFeesStudentParent']);
+    Route::post('parent/my_student/fees_collection/{student_id}',[FeesCollectionController::class,'CollectFeesStudentPaymentParent']);
+    Route::get('parent/paypal/payment-error/{student_id}',[FeesCollectionController::class,'PaymentErrorParent']);
+    Route::get('parent/paypal/payment-success/{student_id}',[FeesCollectionController::class,'PaymentSuccessParent']);
+    Route::get('parent/stripe/payment-error/{student_id}',[FeesCollectionController::class,'PaymentErrorParent']);
+    Route::get('parent/stripe/payment-success/{student_id}',[FeesCollectionController::class,'PaymentSuccessStripeParent']);
 });
