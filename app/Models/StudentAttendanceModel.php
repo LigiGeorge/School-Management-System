@@ -149,4 +149,13 @@ class StudentAttendanceModel extends Model
                          ->groupBy('student_attendance.class_id')
                          ->get();
     }
+    static public function getRecordStudentParentCount($student_ids)
+    {
+          $return = self::select('student_attendance.id')
+                   ->join('class','class.id','=','student_attendance.class_id')
+                   ->whereIn('student_attendance.student_id',$student_ids);                                                     
+          $return=$return->orderBy('student_attendance.id','desc')
+                   ->count();
+          return $return;
+    }
 }

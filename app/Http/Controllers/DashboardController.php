@@ -54,6 +54,21 @@ class DashboardController extends Controller
             }
             else if(Auth::user()->user_type ==4)
             {
+                $student_ids = User::getMyStudentIds(Auth::user()->id);
+                if(!empty($student_ids))
+                {
+                    $data['TotalPaidAmount'] = StudentAddFeesModel::TotalPaidAmountParent($student_ids);
+                    $data['TotalAttendance'] = StudentAttendanceModel::getRecordStudentParentCount($student_ids);
+                    $data['TotalSubmittedHomework'] = HomeworkSubmitModel::getRecordStudentParentCount($student_ids);
+                }
+                else
+                {
+                    $data['TotalPaidAmount'] = 0;
+                    $data['TotalAttendance'] = 0;
+                    $data['TotalSubmittedHomework'] = 0;
+                } 
+                $data['TotalStudent'] = User::getMyStudentCount(Auth::user()->id);
+                $data['TotalNoticeBoard'] = NoticeBoardModel::getRecordUserCount(Auth::user()->user_type);
                 return view('parent.dashboard',$data);
             }  
     }

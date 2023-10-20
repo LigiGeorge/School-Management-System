@@ -262,7 +262,19 @@ class User extends Authenticatable
                        ->where('users.user_type','=',3)
                        ->where('users.parent_id','=',$parent_id)
                        ->where('users.is_delete','=',0)
+                       ->orderBy('users.id','desc')
                        ->get();
+        return $return;
+    }
+    static public function getMyStudentCount($parent_id)
+    {
+        $return = User::select('users.id')
+                       ->join('users as parent','parent.id','=','users.parent_id')
+                       ->join('class','class.id','=','users.class_id','left')
+                       ->where('users.user_type','=',3)
+                       ->where('users.parent_id','=',$parent_id)
+                       ->where('users.is_delete','=',0)
+                       ->count();
         return $return;
     }
     static public function getTeacher()
@@ -408,5 +420,39 @@ class User extends Authenticatable
       ->where('users.is_delete','=',0) 
       ->orderBy('users.id','desc')
       ->count();     
+    }
+    static public function getMyStudentIds($parent_id)
+    {
+        $return = User::select('users.id')
+                       ->join('users as parent','parent.id','=','users.parent_id')
+                       ->join('class','class.id','=','users.class_id','left')
+                       ->where('users.user_type','=',3)
+                       ->where('users.parent_id','=',$parent_id)
+                       ->where('users.is_delete','=',0)
+                       ->orderBy('users.id','desc')
+                       ->get();
+        $student_ids = array();
+        foreach($return as $value)
+        {
+          $student_ids[] = $value->id;
+        }
+        return $student_ids;
+    }
+    static public function getMyStudentClassIds($parent_id)
+    {
+        $return = User::select('users.class_id')
+                       ->join('users as parent','parent.id','=','users.parent_id')
+                       ->join('class','class.id','=','users.class_id')
+                       ->where('users.user_type','=',3)
+                       ->where('users.parent_id','=',$parent_id)
+                       ->where('users.is_delete','=',0)
+                       ->orderBy('users.id','desc')
+                       ->get();
+        $class_ids = array();
+        foreach($return as $value)
+        {
+          $class_ids[] = $value->class_id;
+        }
+        return $class_ids;
     }
 }

@@ -178,5 +178,5 @@ class HomeworkModel extends Model
                       $return = $return->orderBy('homework.id','desc')
                       ->count();
         return $return;
-    }
+    }    
 }
