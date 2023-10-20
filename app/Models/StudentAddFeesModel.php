@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Request;
 
 class StudentAddFeesModel extends Model
 {
@@ -14,6 +15,46 @@ class StudentAddFeesModel extends Model
     static public function getSingle($id)
     {
         return self::find($id);
+    }
+    static public function getRecord()
+    {
+        $return = self::select('student_add_fees.*','class.name as class_name','users.name as created_name',
+                'student.name as student_first_name','student.last_name as student_last_name')
+                    ->join('class','class.id','=','student_add_fees.class_id')
+                    ->join('users as student','student.id','=','student_add_fees.student_id')
+                    ->join('users','users.id','=','student_add_fees.created_by')
+                    ->where('student_add_fees.is_payment','=',1);        
+                   if(!empty(Request::get('student_id')))
+                   {
+                        $return=$return->where('student_add_fees.student_id','=',Request::get('student_id'));
+                   }
+                   if(!empty(Request::get('student_name')))
+                   {
+                        $return=$return->where('student.name','like','%'.Request::get('student_name').'%');                        
+                   }
+                   if(!empty(Request::get('student_last_name')))
+                   {
+                        $return=$return->where('student.last_name','like','%'.Request::get('student_last_name').'%');
+                   }
+                   if(!empty(Request::get('class_id')))
+                   {
+                        $return=$return->where('student_add_fees.class_id','=',Request::get('class_id'));
+                   }
+                   if(!empty(Request::get('start_created_date')))
+                   {
+                        $return=$return->whereDate('student_add_fees.created_at','>=',Request::get('start_created_date'));
+                   }
+                   if(!empty(Request::get('end_created_date')))
+                   {
+                        $return=$return->whereDate('student_add_fees.created_at','<=',Request::get('end_created_date'));
+                   }  
+                   if(!empty(Request::get('payment_type')))
+                   {
+                        $return=$return->where('student_add_fees.payment_type','=',Request::get('payment_type'));
+                   }
+            $return=$return->orderBy('student_add_fees.id','desc')
+                    ->paginate(20);
+        return $return;
     }
     static public function getFees($student_id)
     {

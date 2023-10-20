@@ -77,6 +77,30 @@ class AssignClassTeacherModel extends Model
                     ->where('assign_class_teacher.teacher_id','=',$teacher_id)
                     ->get();
     }
+    static public function getMyClassSubjectCount($teacher_id)
+    {
+        return self::select('assign_class_teacher.id')                    
+                    ->join('class','class.id', '=', 'assign_class_teacher.class_id')
+                    ->join('class_subject','class_subject.class_id', '=', 'class.id')
+                    ->join('subject','subject.id', '=', 'class_subject.subject_id')                    
+                    ->where('assign_class_teacher.is_delete','=',0)
+                    ->where('assign_class_teacher.status','=',0)
+                    ->where('subject.status','=',0)
+                    ->where('subject.is_delete','=',0)
+                    ->where('class.status','=',0)
+                    ->where('class.is_delete','=',0)
+                    ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+                    ->count();
+    }
+    static public function getMyClassSubjectGroupCount($teacher_id)
+    {
+        return self::select('assign_class_teacher.id')                    
+                    ->join('class','class.id', '=', 'assign_class_teacher.class_id')                                       
+                    ->where('assign_class_teacher.is_delete','=',0)
+                    ->where('assign_class_teacher.status','=',0)                                       
+                    ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+                    ->count();
+    }
     static public function getMyTimetable($class_id,$subject_id)
     {
         $getWeek = WeekModel::getWeekUsingName(date('l'));

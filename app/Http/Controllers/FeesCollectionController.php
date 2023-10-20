@@ -23,6 +23,13 @@ class FeesCollectionController extends Controller
         $data['header_title']="Collect Fees";
         return view('admin.fees_collection.collect_fees',$data);
     }
+    public function collect_fees_report()
+    {
+        $data['getClass']=ClassModel::getClass();
+        $data['getRecord'] = StudentAddFeesModel::getRecord();
+        $data['header_title'] = "Collect Fees Report";
+        return view('admin.fees_collection.collect_fees_report',$data);
+    }
     public function collect_fees_add($student_id,Request $request)
     {
         $data['getFees'] = StudentAddFeesModel::getFees($student_id);

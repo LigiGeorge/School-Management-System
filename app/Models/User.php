@@ -396,4 +396,17 @@ class User extends Authenticatable
                   ->where('is_delete','=')
                   ->count();
     }
+    static public function getTeacherStudentCount($teacher_id)
+    {
+      return User::select('users.id')
+      ->join('class','class.id','=','users.class_id','left')   
+      ->join('assign_class_teacher','assign_class_teacher.class_id','=','class.id','left')  
+      ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+      ->where('assign_class_teacher.status','=',0)  
+      ->where('assign_class_teacher.is_delete','=',0)                    
+      ->where('users.user_type','=',3)
+      ->where('users.is_delete','=',0) 
+      ->orderBy('users.id','desc')
+      ->count();     
+    }
 }
