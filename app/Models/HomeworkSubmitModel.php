@@ -80,6 +80,17 @@ class HomeworkSubmitModel extends Model
                                 ->paginate(20);                                
         return $return;
     }
+    static public function getRecordStudentCount($student_id)
+    {
+        $return = HomeworkSubmitModel::select('homework_submit.id')
+                                ->join('homework','homework.id','=','homework_submit.homework_id')
+                                ->join('class','class.id','=','homework.class_id')
+                                ->join('subject','subject.id','=','homework.subject_id')
+                                ->where('homework_submit.student_id','=',$student_id);                      
+        $return=$return->orderBy('homework_submit.id','desc')
+                                ->count();                                
+        return $return;
+    }
     public function getDocument()
     {
         if(!empty($this->document_file) && file_exists('upload/homework/'.$this->document_file))

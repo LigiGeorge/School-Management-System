@@ -132,6 +132,15 @@ class StudentAttendanceModel extends Model
                    ->paginate(20);
           return $return;
     }
+    static public function getRecordStudentCount($student_id)
+    {
+          $return = self::select('student_attendance.id')
+                   ->join('class','class.id','=','student_attendance.class_id')
+                   ->where('student_attendance.student_id','=',$student_id);                                                     
+          $return=$return->orderBy('student_attendance.id','desc')
+                   ->count();
+          return $return;
+    }
     static public function getClassStudent($student_id)
     {
           return StudentAttendanceModel::select('student_attendance.*','class.name as class_name')
