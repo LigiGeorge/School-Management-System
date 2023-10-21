@@ -10,7 +10,7 @@
           </div>
           
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <!-- Main content -->
@@ -20,7 +20,7 @@
           <div class="col-md-12">            
             <div class="card card-primary">
             
-              <form method="post" action="">
+              <form method="post" action="" enctype="multipart/form-data">
               {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
@@ -37,7 +37,14 @@
                     <input type="text" class="form-control" name="password" placeholder="Password">
                     <p>Do you want to change password so please add new password</p>
                   </div>              
-                  
+                  <div class="form-group">
+                    <label>Profile Pic</label><span style="color:red;"></span>
+                    <input type="file" class="form-control" name="profile_pic">
+                    <div style="color:red;">{{$errors->first('profile_pic')}}</div>
+                    @if(!empty($getRecord->getProfile()))
+                    <img src="{{ $getRecord->getProfile() }}" style="width: auto;height:50px;">
+                    @endif
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

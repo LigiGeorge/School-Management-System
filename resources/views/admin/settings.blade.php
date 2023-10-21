@@ -21,7 +21,7 @@
             @include('_message')         
             <div class="card card-primary">
             
-              <form method="post" action="">
+              <form method="post" action="" enctype="multipart/form-data">
               {{csrf_field()}}
                 <div class="card-body">
                   
@@ -36,8 +36,21 @@
                   <div class="form-group">
                     <label>Stripe Secret Key</label>
                     <input type="text" class="form-control" name="stripe_secret" value="{{ $getRecord->stripe_secret }}">
-                  </div>                                
-                  
+                  </div>    
+                  <div class="form-group">
+                    <label>Logo</label><span style="color:red;"></span>
+                    <input type="file" class="form-control" name="logo"> 
+                    @if(!empty($getRecord->getLogo()))
+                    <img src="{{ $getRecord->getLogo() }}" style="width: auto;height:50px;">
+                    @endif                  
+                  </div>                            
+                  <div class="form-group">
+                    <label>Favicon Icon</label><span style="color:red;"></span>
+                    <input type="file" class="form-control" name="favicon_icon"> 
+                    @if(!empty($getRecord->getFavicon())) 
+                    <img src="{{ $getRecord->getFavicon() }}" style="width: auto;height:50px;">
+                    @endif                 
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

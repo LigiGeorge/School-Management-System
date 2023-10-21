@@ -20,7 +20,7 @@
           <div class="col-md-12">            
             <div class="card card-primary">
             
-              <form method="post" action="">
+              <form method="post" action="" enctype="multipart/form-data">
               {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
@@ -36,7 +36,11 @@
                     <label>Password</label>
                     <input type="password" class="form-control" name="password" required placeholder="Password">
                   </div>              
-                  
+                  <div class="form-group">
+                    <label>Profile Pic</label><span style="color:red;"></span>
+                    <input type="file" class="form-control" name="profile_pic">
+                    <div style="color:red;">{{$errors->first('profile_pic')}}</div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
