@@ -19,6 +19,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CommunicateController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\FeesCollectionController;
+use App\Http\Controllers\ChatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,10 @@ Route::post('forgot-password',[AuthController::class,'PostForgotPassword']);
 Route::get('reset/{token}',[AuthController::class,'reset']);
 Route::post('reset/{token}',[AuthController::class,'PostReset']);
 
+
+Route::group(['middleware'=>'common'],function(){
+    Route::get('chat',[ChatController::class,'chat']); 
+});
 
 Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/dashboard',[DashboardController::class,'dashboard']); 
