@@ -44,7 +44,8 @@ Route::post('reset/{token}',[AuthController::class,'PostReset']);
 
 
 Route::group(['middleware'=>'common'],function(){
-    Route::get('chat',[ChatController::class,'chat']); 
+    Route::get('chat',[ChatController::class,'chat']);
+    Route::post('submit_message',[ChatController::class,'submit_message']); 
 });
 
 Route::group(['middleware'=>'admin'],function(){
