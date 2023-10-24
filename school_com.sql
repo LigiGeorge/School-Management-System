@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2023 at 11:29 AM
+-- Generation Time: Oct 24, 2023 at 12:47 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -78,20 +78,28 @@ CREATE TABLE `chat` (
 
 INSERT INTO `chat` (`id`, `sender_id`, `receiver_id`, `message`, `file`, `status`, `created_date`, `created_at`, `updated_at`) VALUES
 (1, 1, 7, 'hi ligi', NULL, 0, 1697994982, '2023-10-22 17:16:22', '2023-10-22 17:16:22'),
-(2, 1, 14, 'hello nivin', NULL, 0, 1697995144, '2023-10-22 17:19:04', '2023-10-22 17:19:04'),
+(2, 1, 14, 'hello nivin', NULL, 1, 1697995144, '2023-10-22 17:19:04', '2023-10-24 09:30:50'),
 (3, 1, 15, 'good morning', NULL, 0, 1697995176, '2023-10-22 17:19:36', '2023-10-22 17:19:36'),
-(4, 14, 1, 'hello ', NULL, 0, 1697995144, '2023-10-22 17:19:04', '2023-10-22 17:19:04'),
-(5, 1, 14, 'did you submit report?', NULL, 0, 1698051584, '2023-10-23 08:59:44', '2023-10-23 08:59:44'),
-(6, 1, 14, 'yes', NULL, 0, 1698051951, '2023-10-23 09:05:51', '2023-10-23 09:05:51'),
-(7, 1, 14, 'i am in a meeting', NULL, 0, 1698052131, '2023-10-23 09:08:51', '2023-10-23 09:08:51'),
-(8, 1, 14, 'Call me after one hour', NULL, 0, 1698052274, '2023-10-23 09:11:14', '2023-10-23 09:11:14'),
-(9, 1, 14, 'I am going to outside', NULL, 0, 1698052580, '2023-10-23 09:16:20', '2023-10-23 09:16:20'),
-(10, 1, 14, 'shall we?', NULL, 0, 1698052670, '2023-10-23 09:17:50', '2023-10-23 09:17:50'),
-(11, 1, 14, 'hey', NULL, 0, 1698052685, '2023-10-23 09:18:05', '2023-10-23 09:18:05'),
+(4, 14, 1, 'hello ', NULL, 1, 1697995144, '2023-10-22 17:19:04', '2023-10-24 05:07:13'),
+(5, 1, 14, 'did you submit report?', NULL, 1, 1698051584, '2023-10-23 08:59:44', '2023-10-24 09:30:50'),
+(6, 1, 14, 'yes', NULL, 1, 1698051951, '2023-10-23 09:05:51', '2023-10-24 09:30:50'),
+(7, 1, 14, 'i am in a meeting', NULL, 1, 1698052131, '2023-10-23 09:08:51', '2023-10-24 09:30:50'),
+(8, 1, 14, 'Call me after one hour', NULL, 1, 1698052274, '2023-10-23 09:11:14', '2023-10-24 09:30:50'),
+(9, 1, 14, 'I am going to outside', NULL, 1, 1698052580, '2023-10-23 09:16:20', '2023-10-24 09:30:50'),
+(10, 1, 14, 'shall we?', NULL, 1, 1698052670, '2023-10-23 09:17:50', '2023-10-24 09:30:50'),
+(11, 1, 14, 'hey', NULL, 1, 1698052685, '2023-10-23 09:18:05', '2023-10-24 09:30:50'),
 (12, 1, 13, 'Are you free now?', NULL, 0, 1698052752, '2023-10-23 09:19:12', '2023-10-23 09:19:12'),
-(13, 1, 14, 'come here', NULL, 0, 1698052788, '2023-10-23 09:19:48', '2023-10-23 09:19:48'),
-(14, 1, 14, 'ok done', NULL, 0, 1698052955, '2023-10-23 09:22:35', '2023-10-23 09:22:35'),
-(15, 1, 14, 'are you ok?', NULL, 0, 1698053090, '2023-10-23 09:24:50', '2023-10-23 09:24:50');
+(13, 1, 14, 'come here', NULL, 1, 1698052788, '2023-10-23 09:19:48', '2023-10-24 09:30:50'),
+(14, 1, 14, 'ok done', NULL, 1, 1698052955, '2023-10-23 09:22:35', '2023-10-24 09:30:50'),
+(15, 1, 14, 'are you ok?', NULL, 1, 1698053090, '2023-10-23 09:24:50', '2023-10-24 09:30:50'),
+(16, 1, 13, 'yes', NULL, 0, 1698123540, '2023-10-24 04:59:00', '2023-10-24 04:59:00'),
+(17, 13, 1, 'yes am free now', NULL, 1, 1698123584, '2023-10-24 04:59:44', '2023-10-24 08:30:42'),
+(18, 1, 4, 'hi dolly', NULL, 0, 1698124485, '2023-10-24 05:14:45', '2023-10-24 05:14:45'),
+(19, 1, 7, 'hi', NULL, 0, 1698128995, '2023-10-24 06:29:55', '2023-10-24 06:29:55'),
+(20, 1, 15, 'hello ammu', NULL, 0, 1698136398, '2023-10-24 08:33:18', '2023-10-24 08:33:18'),
+(21, 1, 14, 'hi', NULL, 1, 1698140836, '2023-10-24 09:47:16', '2023-10-24 09:47:26'),
+(22, 11, 10, 'hi abi', NULL, 1, 1698141996, '2023-10-24 10:06:36', '2023-10-24 10:09:02'),
+(23, 10, 11, 'hi hello', NULL, 1, 1698142153, '2023-10-24 10:09:13', '2023-10-24 10:09:41');
 
 -- --------------------------------------------------------
 
@@ -704,7 +712,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `occupation`, `marital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$IHpinDda2WguWwOghT/x8eV.KLFADOgRmEnLHAzKVCpg9OyhLHnxq', '2X69s0nGiXJky1tAe9ZZtyPAU8tDh5ppJOmn82detpphuBdA7OErp9hkwuxx', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20231020060830f88rk1gcg0mxdu7t6tbv.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-20 01:06:29'),
+(1, NULL, 'Admin', NULL, 'admin@gmail.com', NULL, '$2y$10$IHpinDda2WguWwOghT/x8eV.KLFADOgRmEnLHAzKVCpg9OyhLHnxq', 'fiKD8Ibc9yiYDaDx0siL1GMqEUOpQdn7ymYbUtvMmqtIVWcOlco1rYizeOJt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20231020060830f88rk1gcg0mxdu7t6tbv.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-25 07:07:09', '2023-10-24 04:33:27'),
 (3, NULL, 'Teacher', 'Anny', 'teacher@gmail.com', NULL, '$2y$10$uEBlKcFk/EkG7JchH8M71O1ks9QYoRBQO6aIoNrMJ3Zuw2sBNxfMq', 'cnUoDVqZsjRmMvqOuT7rhD4xRpAf3YzJE619CBTm1Iq5dEIl0TktCi8ZuuA8', NULL, NULL, NULL, 'Female', '2023-09-27', NULL, NULL, '7845120369', '2023-10-01', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-09-26 07:21:02', '2023-10-02 12:04:15'),
 (4, NULL, 'Parent', 'Dolly', 'parent@gmail.com', NULL, '$2y$10$uslMdsmjNWolxPkO7nHFBesP3ahXACrZu1tp5J6agqB/6XRZ7gNQm', 'rb2CmLg3xeyrzH8OKxdf3uioiUx0GHyTGe7came2fC7ism0NARp0siv1sUWX', NULL, NULL, NULL, 'Female', NULL, NULL, NULL, '8281857938', NULL, '2023102006215357vqte1wvli1khdainhz.jpg', NULL, NULL, NULL, '', NULL, 'Mandaram', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-09-26 07:21:02', '2023-10-20 00:51:53'),
 (5, 11, 'Evan', 'Libu', 'evan@gmail.com', NULL, '$2y$10$ZQovMtnoF1.dJu4oEwDXS.whq2esuvHRxJbbDZJUlfauRMg/jKUxy', 'qMBy8SPIfJvfXCH7rDXGugl2m18QXnZDOmMg8LV4MJWg2GWJwb3S5eI9NsAD', '2132', '76', 3, 'Male', '2023-08-05', 'No caste', 'no religion', '7356217922', '2023-09-28', NULL, 'A', '100', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-09-26 07:21:02', '2023-10-19 23:36:35'),
@@ -712,11 +720,11 @@ INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_ver
 (7, NULL, 'Abiya Libu', NULL, 'abiya@gmail.com', NULL, '$2y$10$WHOZKim/1y2DAuqe/MuZ/eJiNSPAuEY5lhvNYSWIndr0bA/xRh.3.', 'PbhDUPIxVDwDee4w4lvQtmgFxboOKDopnAFqxIdeFCDyTZPYJkolmful6RYM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 01:24:37', '2023-09-27 03:21:22'),
 (8, NULL, 'admin', NULL, 'admin123@gmail.com', NULL, '$2y$10$WFe4gcv3IaNJcvalUZ1lO.VufGhA4Mdnmb2WCwgX5F5p5S73pe.OO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20231020061746mdigyynl2nv8zklwbnrl.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, '2023-09-27 03:45:37', '2023-10-20 00:47:46'),
 (9, 4, 'John Doe', 'd', 'john@gmail.com', NULL, '$2y$10$0f42oAOdJRipUE5V2mZabug9MxLMovFQPwD.WQfCgCXQza0kuj1Ki', 'l7gTWkK957MyqWyPIwbEhpseOnr3a2Ix6WhYAISQHjNxP4j616iBc7dfQLTH', '342', '155', 2, 'Male', '2023-09-28', 'fds', 'dsfew', '34657554', '2023-10-01', '20231001054907dugey0ebd04junphkrbx.jpg', 'f', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 12:19:07', '2023-10-18 00:51:55'),
-(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', '1VjtW7dzS5PwBZQhWcCKQeIacJK2g2qUtsmqp6lDdDOwBmWb8sIMe2NhPJuc', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231020062952njryggqvjs18v8ivau5t.webp', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-20 00:59:52'),
-(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', 'B2xaDwbIZCN0iBJ6DYTRO8pC9CECM6sElyzJah58I0cd8iyw6iDROs93lBvQ', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-06 03:40:42'),
-(12, NULL, 'Beena', 'A Philipose', 'beena123@gmail.com', NULL, '$2y$10$yF/oAcHFS/rEczjEfrSBpeVdd5iM0JLjgectMwh590Y2JwILAd8su', 'skQr2kpAGVtTq6zpS6JMe9PA2H0ZTNeZlmKiSD2ODczKxEtQGW6f5W9UBOAD', NULL, NULL, NULL, 'Female', '2023-06-03', NULL, NULL, '9863251478', '2023-10-03', '20231002050942zv1bfylfuvhuxyahl8ug.jpg', NULL, NULL, NULL, NULL, 'Married', 'Swargam', 'Tvm', 'MTech', '2 Years', 'nothing', 2, 0, 0, '2023-10-02 11:39:42', '2023-10-02 23:19:30'),
-(13, NULL, 'Aneesha', 'A', 'aneesha@gmail.com', NULL, '$2y$10$bmGusTThrDlojvQUiW5a2uNj9ZFHth6uSf.dcMVXc7HpH/xZuOwbu', NULL, NULL, NULL, NULL, 'Female', '2023-06-02', NULL, NULL, '9863252586', '2023-03-18', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:22:29', '2023-10-03 05:22:29'),
-(14, NULL, 'Nivin', 'VIncent', 'nivin@gmail.com', NULL, '$2y$10$DuumRBayjBm2Zy27Xro7UuBrQ9RNLrAJcX1gsAjfwzX5RRYYdTMUS', '9MWezlXUDBAJ2JJQaovIeovj7IFpR1k15uw4BmYMEYGaXuOalHoOoXnWQtyd', NULL, NULL, NULL, 'Male', '2023-06-30', NULL, NULL, '', '2023-05-19', NULL, NULL, NULL, NULL, NULL, '', 'kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:25:34', '2023-10-03 05:25:34'),
+(10, 11, 'Abiyaaa', 'Sam', 'abiya123@gmail.com', NULL, '$2y$10$1DOUi9ylZGY1P87scxMF3.YdEkpyLNKjBbn2wIGcpV7KyE6AIJthy', 'qFAISFFkSUL7dNwhHRSzuDPMdlKpI8dLCHuFxaj2P1puZSyFxIzGW3rTLnqA', '1545', '548', 3, 'Female', '2023-09-28', '', '', '151545959', '2023-09-25', '20231020062952njryggqvjs18v8ivau5t.webp', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-01 22:50:57', '2023-10-24 04:51:58'),
+(11, NULL, 'George', 'M', 'george@gmail.com', NULL, '$2y$10$NZ56oxK.YNiTLJs3T53vL.0I56mT8Bb8aOHMmNyXxzEELy.oV/RQ.', 'hA8uz4pbCwP94rEYYXgsgxbFj85V5pZbiZGUxfgvrZH78Q4Zj6c1MJm3Z5tQ', NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '7356217922', NULL, '20231003054103dhlov2llyseqhfiqhjrv.jfif', NULL, NULL, NULL, 'Agriculture', NULL, 'Kollam India', NULL, NULL, NULL, NULL, 4, 0, 0, '2023-10-02 01:07:22', '2023-10-24 05:16:11'),
+(12, NULL, 'Beena', 'A Philipose', 'beena123@gmail.com', NULL, '$2y$10$yF/oAcHFS/rEczjEfrSBpeVdd5iM0JLjgectMwh590Y2JwILAd8su', '64k3PiKMdp9ZH1kBeo5wpcLS3YkyVYgfWGIGvtHi6J4KBSy758jDn2w7XxWO', NULL, NULL, NULL, 'Female', '2023-06-03', NULL, NULL, '9863251478', '2023-10-03', '20231002050942zv1bfylfuvhuxyahl8ug.jpg', NULL, NULL, NULL, NULL, 'Married', 'Swargam', 'Tvm', 'MTech', '2 Years', 'nothing', 2, 0, 0, '2023-10-02 11:39:42', '2023-10-02 23:19:30'),
+(13, NULL, 'Aneesha', 'A', 'aneesha@gmail.com', NULL, '$2y$10$bmGusTThrDlojvQUiW5a2uNj9ZFHth6uSf.dcMVXc7HpH/xZuOwbu', 'NSpm9sREOtuLThH5pmXfqzG8zq8A0s8tHMDwE4UaD2QmXVesfttLETJOi3tf', NULL, NULL, NULL, 'Female', '2023-06-02', NULL, NULL, '9863252586', '2023-03-18', NULL, NULL, NULL, NULL, NULL, '', 'Kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:22:29', '2023-10-03 05:22:29'),
+(14, NULL, 'Nivin', 'VIncent', 'nivin@gmail.com', NULL, '$2y$10$DuumRBayjBm2Zy27Xro7UuBrQ9RNLrAJcX1gsAjfwzX5RRYYdTMUS', '9MWezlXUDBAJ2JJQaovIeovj7IFpR1k15uw4BmYMEYGaXuOalHoOoXnWQtyd', NULL, NULL, NULL, 'Male', '2023-06-30', NULL, NULL, '', '2023-05-19', NULL, NULL, NULL, NULL, NULL, '', 'kochi', '', '', '', '', 2, 0, 0, '2023-10-03 05:25:34', '2023-10-24 04:29:31'),
 (15, NULL, 'Ammu', 'Prince', 'ammu@gmail.com', NULL, '$2y$10$sLLpUE0H17ubmUYDz/v5FuHcHhfisYUom5ONldIAfPve1fFz.ip8y', 'Ix0FjzELOr1bhbiNKfHSBoyUqZIQOH8Gm0GGFbYTR0R8wnhZroK3HUypu9D0', '12478', '', 4, 'Female', '2023-05-05', '', '', '7845103698', '2023-09-26', NULL, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, '2023-10-11 22:43:18', '2023-10-11 22:43:39');
 
 -- --------------------------------------------------------
@@ -906,7 +914,7 @@ ALTER TABLE `assign_class_teacher`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `class`

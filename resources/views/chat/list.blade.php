@@ -388,5 +388,14 @@
             $('.chat-history').animate({scrollTop: $('.chat-history').prop("scrollHeight")+300000},500);
         }
         srolldown();
+
+        $('body').delegate('#OpenFile','click',function(e){            
+            $('#file_name').trigger('click');
+        });
+        $('body').delegate('#file_name','change',function(e){            
+            var filename = this.files[0].name;
+            console.log(filename);
+        });
+        
     </script>
 @endsection
