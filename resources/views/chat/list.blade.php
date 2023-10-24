@@ -177,7 +177,7 @@
 
 .chat .chat-history .other-message:after {
     border-bottom-color: #e8f1f3;
-    left: 93%
+    left: 85%
 }
 
 .chat .chat-message {
