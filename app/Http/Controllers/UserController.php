@@ -23,6 +23,8 @@ class UserController extends Controller
         $settings->paypal_email = trim($request->paypal_email);
         $settings->stripe_key = trim($request->stripe_key);
         $settings->stripe_secret = trim($request->stripe_secret);
+        $settings->school_name = trim($request->school_name);
+        $settings->exam_description = trim($request->exam_description);
         if(!empty($request->file('logo')))
         {
             // if(!empty($user->getProfile()))

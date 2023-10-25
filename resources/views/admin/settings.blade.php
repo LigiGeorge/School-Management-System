@@ -51,6 +51,14 @@
                     <img src="{{ $getRecord->getFavicon() }}" style="width: auto;height:50px;">
                     @endif                 
                   </div>
+                  <div class="form-group">
+                    <label>School Name</label>
+                    <input type="text" class="form-control" name="school_name" value="{{ $getRecord->school_name }}">
+                  </div>
+                  <div class="form-group">
+                    <label>Exam Description</label>
+                    <textarea name="exam_description" class="form-control" >{{ $getRecord->exam_description }}</textarea>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
