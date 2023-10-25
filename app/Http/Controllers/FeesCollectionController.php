@@ -10,6 +10,8 @@ use App\Models\StudentAddFeesModel;
 use App\Models\SettingsModel;
 use Stripe\Stripe;
 use Session;
+// use App\Exports\ExportCollectFees;
+// use Excel;
 
 class FeesCollectionController extends Controller
 {
@@ -29,6 +31,10 @@ class FeesCollectionController extends Controller
         $data['getRecord'] = StudentAddFeesModel::getRecord();
         $data['header_title'] = "Collect Fees Report";
         return view('admin.fees_collection.collect_fees_report',$data);
+    }
+    public function export_collect_fees_report(Request $request)
+    {
+       return Excel::download(new ExportCollectFees,'test.csv');
     }
     public function collect_fees_add($student_id,Request $request)
     {

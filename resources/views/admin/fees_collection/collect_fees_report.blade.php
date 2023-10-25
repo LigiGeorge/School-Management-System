@@ -79,6 +79,10 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Collect Fees Report</h3>
+                <form style="float:right" method="post" action="{{ url('admin/fees_collection/export_collect_fees_report') }}">
+                  {{ csrf_field() }}
+                  <button type="submit" class="btn btn-primary">Export Excel</button>
+                </form>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
