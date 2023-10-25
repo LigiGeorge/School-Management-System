@@ -87,17 +87,7 @@
                                 <td style="border-bottom:1px solid;width:100%;">{{ $getExam->name }}</td>
                             </tr>
                         </tbody>
-                    </table>
-                    <table class="margin-bottom" style="width:100%;">
-                        <tbody>
-                            <tr>
-                                <td width="19%">Total Score : </td>
-                                <td style="border-bottom:1px solid;width:50%;"></td>
-                                <td width="16%">Average : </td>
-                                <td style="border-bottom:1px solid;width:50%;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    </table>                    
                 </td>
                 <td width="5%"></td>
                 <td width="20%" valign="top">
