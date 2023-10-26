@@ -297,7 +297,7 @@ class User extends Authenticatable
                        ->count();
         return $return;
     }
-    static public function getTeacher()
+    static public function getTeacher($remove_pagination=0)
     {
       $return=self::select('users.*')
                    ->where('users.user_type','=',2)
@@ -343,8 +343,16 @@ class User extends Authenticatable
                      $status=(Request::get('status') == 100) ? 0 : 1;
                      $return=$return->where('users.status','=', $status);
                    }
-      $return=$return->orderBy('users.id','desc')
-                     ->paginate(20);
+      $return=$return->orderBy('users.id','desc');
+      if(!empty($remove_pagination))
+      {
+        $return=$return->get();
+      }
+      else
+      {
+        $return=$return->paginate(20);
+      }
+      
       return $return;
     }
     static public function getTeacherClass()
