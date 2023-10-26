@@ -95,7 +95,7 @@ class User extends Authenticatable
     {
         return User::where('remember_token','=',$remember_token)->first();
     }
-    static public function getStudent()
+    static public function getStudent($remove_pagination=0)
     {
         $return = User::select('users.*','class.name as class_name','parent.name as parent_name','parent.last_name as parent_last_name' )
                           ->join('class','class.id','=','users.class_id','left')
@@ -160,8 +160,15 @@ class User extends Authenticatable
                             $return=$return->where('users.status','=', $status);
                           }
 
-        $return=$return->orderBy('users.id','desc')
-                       ->paginate(20);
+        $return=$return->orderBy('users.id','desc');
+        if(!empty($remove_pagination))
+        {
+          $return=$return->get();
+        }
+        else
+        {
+          $return=$return->paginate(20);
+        }        
         return $return;
     }
     public function getProfile()

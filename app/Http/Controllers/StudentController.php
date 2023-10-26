@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClassModel;
+use App\Exports\ExportStudent;
 use Hash;
 use Auth;
 use Str;
+use Excel;
 
 class StudentController extends Controller
 {
+    public function export_excel(Request $request)
+    {
+        return Excel::download(new ExportStudent,'Student_'.date('d-m-Y').'.xls');
+    }
     public function list()
     {
         $data['getRecord']=User::getStudent();
