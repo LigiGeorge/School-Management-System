@@ -159,6 +159,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/attendance/student',[AttendanceController::class,'AttendanceStudent']);
     Route::post('admin/attendance/student/save',[AttendanceController::class,'AttendanceStudentSubmit']);
     Route::get('admin/attendance/report',[AttendanceController::class,'AttendanceReport']);
+    Route::post('admin/attendance/report_export_excel',[AttendanceController::class,'AttendanceReportExportExcel']);
 
     //communicate -notice board
     Route::get('admin/communicate/notice_board',[CommunicateController::class,'NoticeBoard']);
