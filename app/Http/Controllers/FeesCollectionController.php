@@ -8,10 +8,10 @@ use App\Models\ClassModel;
 use App\Models\User;
 use App\Models\StudentAddFeesModel;
 use App\Models\SettingsModel;
+use App\Exports\ExportCollectFees;
 use Stripe\Stripe;
 use Session;
-// use App\Exports\ExportCollectFees;
-// use Excel;
+use Excel;
 
 class FeesCollectionController extends Controller
 {
@@ -34,7 +34,7 @@ class FeesCollectionController extends Controller
     }
     public function export_collect_fees_report(Request $request)
     {
-       return Excel::download(new ExportCollectFees,'test.csv');
+       return Excel::download(new ExportCollectFees,'CollectFeesReport_'.date('d-m-Y').'.xls');
     }
     public function collect_fees_add($student_id,Request $request)
     {
