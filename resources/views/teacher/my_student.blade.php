@@ -81,7 +81,7 @@
                       <td>{{$value->blood_group}}</td>
                       <td>{{$value->height}}</td>
                       <td>{{$value->weight}}</td>                      
-                      <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>                      
+                      <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>                      
                     </tr>
                     @endforeach
                   </tbody>

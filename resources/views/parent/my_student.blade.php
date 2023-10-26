@@ -82,7 +82,7 @@
                       <td>{{$value->blood_group}}</td>
                       <td>{{$value->height}}</td>
                       <td>{{$value->weight}}</td>                                                             
-                      <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>   
+                      <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>   
                       <td style="min-width: 400px;">
                          <a style="margin-bottom:10px;" class="btn btn-success btn-sm" href="{{url('parent/my_student/subject/'.$value->id)}}">Subject</a>
                          <a style="margin-bottom:10px;" class="btn btn-primary btn-sm" href="{{url('parent/my_student/exam_timetable/'.$value->id)}}">Exam Timetable</a>

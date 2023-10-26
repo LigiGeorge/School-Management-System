@@ -99,6 +99,19 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Parent List</h3>
+                <form action="{{ url('admin/parent/export_excel') }}" method="post" style="float:right;">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="name" value="{{Request::get('name')}}">
+                  <input type="hidden" name="last_name" value="{{Request::get('last_name')}}">
+                  <input type="hidden" name="email" value="{{Request::get('email')}}">
+                  <input type="hidden" name="gender" value="{{Request::get('gender')}}">
+                  <input type="hidden" name="occupation" value="{{Request::get('occupation')}}">
+                  <input type="hidden" name="address" value="{{Request::get('address')}}">
+                  <input type="hidden" name="mobile_number" value="{{Request::get('mobile_number')}}">
+                  <input type="hidden" name="status" value="{{Request::get('status')}}">
+                  <input type="hidden" name="date" value="{{Request::get('date')}}">                 
+                  <button class="btn btn-primary">Export Excel</button>
+                </form>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0" style="overflow:auto;">
@@ -134,7 +147,7 @@
                       <td>{{$value->occupation}}</td>
                       <td>{{$value->address}}</td>
                       <td>{{ ($value->status == 0) ?  'Active' : 'Inactive'}}</td>
-                      <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>
+                      <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>
                       <td style="min-width: 350px;">
                         <a href="{{url('admin/parent/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
                         <a href="{{url('admin/parent/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>

@@ -82,7 +82,7 @@
                       </td>
                       <td>{{$value->name}}</td>
                       <td>{{$value->email}}</td>
-                      <td>{{date('d-m-Y H:i A'),strtotime($value->created_at)}}</td>
+                      <td>{{date('d-m-Y H:i A',strtotime($value->created_at))}}</td>
                       <td>
                         <a href="{{url('admin/admin/edit/'.$value->id)}}" class="btn btn-primary">Edit</a>
                         <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>

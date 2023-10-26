@@ -89,6 +89,7 @@ Route::group(['middleware'=>'admin'],function(){
     [ParentController::class,'AssignStudentParent']);
     Route::get('admin/parent/assign_student_parent_delete/{student_id}',
     [ParentController::class,'AssignStudentParentDelete']);
+    Route::post('admin/parent/export_excel',[ParentController::class,'export_excel']); 
 
     //class url 
     Route::get('admin/class/list',[ClassController::class,'list']); 

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\ExportParent;
 use Hash;
 use Auth;
 use Str;
+use Excel;
 
 class ParentController extends Controller
 {
+    public function export_excel(Request $request)
+    {
+        return Excel::download(new ExportParent,'Parent_'.date('d-m-Y').'.xls');
+    }
     public function list()
     {
         $data['getRecord']=User::getParent();

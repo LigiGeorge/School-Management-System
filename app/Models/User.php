@@ -195,7 +195,7 @@ class User extends Authenticatable
             return url('upload/profile/user.jpg');
         }
     }
-    static public function getParent()
+    static public function getParent($remove_pagination=0)
     {
         $return = User::select('users.*')
                           ->where('user_type','=',4)
@@ -238,8 +238,16 @@ class User extends Authenticatable
                             $return=$return->where('users.status','=', $status);
                           }
                         
-        $return=$return->orderBy('id','desc')
-                       ->paginate(20);
+        $return=$return->orderBy('id','desc');
+        if(!empty($remove_pagination))
+        {
+          $return=$return->get();
+        }
+        else
+        {
+          $return=$return->paginate(20);
+        }
+        
         return $return;
     }
     static public function getSearchStudent()
